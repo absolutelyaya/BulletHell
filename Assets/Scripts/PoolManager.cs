@@ -12,13 +12,26 @@ public class PoolManager : MonoBehaviour
 
     public Dictionary<string, GameObject> pools = new Dictionary<string, GameObject>();
 
-    private void Start()
+    private void OnEnable()
     {
         current = this;
         foreach (var item in Pools)
         {
             CreatePool(item);
         }
+    }
+
+    public Pool GetPool(GameObject target)
+    {
+        pools.TryGetValue(target.name.Replace("(Clone)", ""), out GameObject pool);
+        if (!pool)
+        {
+            Debug.LogWarning($"Pool '{target.name}' doesn't exist. Creating now.");
+            CreatePool(new PoolEntry(target, 10));
+            pools.TryGetValue(target.name, out pool);
+            return pool.GetComponent<Pool>();
+        }
+        return pool.GetComponent<Pool>();
     }
 
     void CreatePool(PoolEntry pattern)
@@ -33,21 +46,17 @@ public class PoolManager : MonoBehaviour
 
     public GameObject Activate(GameObject target, Vector2 position = new Vector2())
     {
-        pools.TryGetValue(target.name, out GameObject pool);
-        if(!pool)
-        {
-            Debug.LogWarning($"Pool '{target.name}' doesn't exist. Creating now.");
-            CreatePool(new PoolEntry(target, 10));
-            pools.TryGetValue(target.name, out pool);
-            return pool.GetComponent<Pool>().Activate(position);
-        }
-        return pool.GetComponent<Pool>().Activate(position);
+        return GetPool(target).Activate(position);
+    }
+
+    public GameObject Activate(GameObject target, Transform parent, Vector2 position = new Vector2())
+    {
+        return GetPool(target).Activate(parent, position);
     }
 
     public void Deactivate(GameObject target)
     {
-        pools.TryGetValue(target.name.Replace("(Clone)", ""), out GameObject pool);
-        pool.GetComponent<Pool>().Deactivate(target);
+        GetPool(target).Deactivate(target);
     }
 }
 

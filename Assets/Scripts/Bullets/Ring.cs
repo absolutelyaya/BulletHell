@@ -14,33 +14,34 @@ public class Ring : BulletBase
     public float Distance;
     public bool RandomizedValues;
 
-    void Start()
+    public override void OnEnable()
     {
+        base.OnEnable();
         if(RandomizedValues)
         {
             SideBob = Random.Range(-1.25f, 1.25f);
             RotationSpeed = Random.Range(-3f, 3f);
             Speed = Random.Range(1.5f, 3f);
         }
-        SpawnPetals();
+        Invoke("SpawnPetals", 0.1f);
     }
     
-    [ExecuteAlways]
     public void SpawnPetals()
     {
         Color color = Color.clear;
         DestroyPetals();
         for (int i = 0; i < Elements; i++)
         {
-            GameObject newPetal = (GameObject)PrefabUtility.InstantiatePrefab(Bullet, transform);
+            GameObject newPetal = PoolManager.current.Activate(Bullet, transform, transform.position);
             if (color == Color.clear) color = newPetal.GetComponent<SpriteRenderer>().color;
             newPetal.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 360f / Elements * i));
-            newPetal.transform.position += newPetal.transform.up * (Distance + 0.45f + (Mathf.Clamp(Elements - 4, 0, Mathf.Infinity) * 0.125f) * Mathf.Pow(1.00001f, Elements));
+            newPetal.transform.position += newPetal.transform.up * 
+                (Distance + 0.45f + (Mathf.Clamp(Elements - 4, 0, Mathf.Infinity) * 0.125f) * Mathf.Pow(1.00001f, Elements));
             newPetal.GetComponent<SpriteRenderer>().color = color;
+            newPetal.GetComponent<BulletBase>().Moves = false;
         }
     }
 
-    [ExecuteAlways]
     void DestroyPetals()
     {
         List<GameObject> CurrentPetals = new List<GameObject>();
@@ -50,34 +51,44 @@ public class Ring : BulletBase
         }
         if (CurrentPetals.Count > 0) for (int i = 0; i < CurrentPetals.Count; i++)
         {
-            DestroyImmediate(CurrentPetals[i]);
+            PoolManager.current.Deactivate(CurrentPetals[i]);
         }
         CurrentPetals = new List<GameObject>();
     }
 
     public override void Move()
     {
-        transform.Translate(new Vector3(Mathf.Sin(Time.time * SideBob), - 1) * Speed * Time.deltaTime, Space.World);
-        transform.Rotate(new Vector3(0, 0, RotationSpeed));
+        if(Moves)
+        {
+            transform.Translate(new Vector3(Mathf.Sin(Time.time * SideBob), -1) * Speed * Time.deltaTime, Space.World);
+            transform.Rotate(new Vector3(0, 0, RotationSpeed));
+        }
     }
 
     public override void Death()
     {
-        transform.DetachChildren();
+        List<GameObject> CurrentPetals = new List<GameObject>();
+        foreach (Transform child in transform)
+        {
+            CurrentPetals.Add(child.gameObject);
+        }
+        foreach (var item in CurrentPetals)
+        {
+            item.GetComponent<BulletBase>().Moves = true;
+            item.transform.parent = PoolManager.current.GetPool(item).transform;
+        }
         base.Death();
     }
-}
 
-[CustomEditor(typeof(Ring))]
-public class BlossomInspector : Editor
-{
-    public override void OnInspectorGUI()
+    private void OnDrawGizmosSelected()
     {
-        DrawDefaultInspector();
-        Ring script = (Ring)target;
-        if(GUILayout.Button("Preview"))
+        float distance = Distance + 0.45f + Mathf.Clamp(Elements - 4, 0, Mathf.Infinity) * 0.125f * Mathf.Pow(1.00001f, Elements) / 2;
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, distance);
+        Gizmos.color = Color.red;
+        for (int i = 0; i < Elements; i++)
         {
-            script.SpawnPetals();
+            Gizmos.DrawWireSphere(transform.position + Quaternion.AngleAxis(360f / Elements * i, Vector3.forward * distance) * transform.up * distance, 0.1f);
         }
     }
 }

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 1.5
+  Moves: 0
   HasLiveTime: 1
   StartLiveTime: 5
   Bullet: {fileID: 8868261923147093872, guid: 647cb031577687d43a132bc0f7d932fb, type: 3}

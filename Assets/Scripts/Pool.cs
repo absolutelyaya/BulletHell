@@ -43,8 +43,32 @@ public class Pool : MonoBehaviour
         return target;
     }
 
+    public GameObject Activate(Transform parent, Vector2 position = new Vector2())
+    {
+        GameObject target = null;
+        foreach (var item in entries)
+        {
+            if (!item.activeSelf)
+            {
+                target = item;
+                break;
+            }
+        }
+        if (!target)
+        {
+            target = Instantiate(Object, transform);
+            entries.Add(target);
+            Debug.LogWarning($"Expanding pool '{gameObject.name}'");
+        }
+        target.transform.parent = parent;
+        target.transform.position = position;
+        target.SetActive(true);
+        return target;
+    }
+
     public void Deactivate(GameObject target)
     {
+        if (!entries.Contains(target)) entries.Add(target);
         target.transform.parent = transform;
         target.transform.position = transform.position;
         target.transform.rotation = Quaternion.identity;

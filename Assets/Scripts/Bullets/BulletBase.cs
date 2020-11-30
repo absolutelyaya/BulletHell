@@ -6,14 +6,16 @@ public class BulletBase : MonoBehaviour
 {
 
     public float Speed;
+    public bool Moves;
     public bool HasLiveTime;
     public float StartLiveTime;
 
     float liveTime;
 
-    void OnEnable()
+    public virtual void OnEnable()
     {
         liveTime = StartLiveTime;
+        Moves = true;
     }
 
     void Update()
@@ -42,6 +44,6 @@ public class BulletBase : MonoBehaviour
 
     public virtual void Move()
     {
-        transform.Translate(Vector2.up * Speed * Time.deltaTime, Space.Self);
+        if(Moves) transform.Translate(Vector2.up * Speed * Time.deltaTime, Space.Self);
     }
 }
