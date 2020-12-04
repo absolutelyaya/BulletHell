@@ -34,14 +34,16 @@ public class SpawningSystem : MonoBehaviour
 [Serializable]
 public struct SpawnEntry
 {
-    public SpawnEntry(GameObject entity, float delay, Vector2 position)
+    public SpawnEntry(GameObject entity, float delay, Vector2 position, float rotation)
     {
         Entity = entity;
         Delay = delay;
         Position = position;
+        Rotation = rotation;
     }
 
     public GameObject Entity;
     public float Delay;
     public Vector2 Position;
+    public float Rotation;
 }

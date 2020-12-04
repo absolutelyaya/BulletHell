@@ -44,12 +44,12 @@ public class PoolManager : MonoBehaviour
         pools.Add(pattern.Object.name, poolObject);
     }
 
-    public GameObject Activate(GameObject target, Vector2 position = new Vector2())
+    public GameObject Activate(GameObject target, Vector2 position = new Vector2(), Quaternion rotation = new Quaternion())
     {
         return GetPool(target).Activate(position);
     }
 
-    public GameObject Activate(GameObject target, Transform parent, Vector2 position = new Vector2())
+    public GameObject Activate(GameObject target, Transform parent, Vector2 position = new Vector2(), Quaternion rotation = new Quaternion())
     {
         return GetPool(target).Activate(parent, position);
     }
