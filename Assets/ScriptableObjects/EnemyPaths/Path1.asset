@@ -15,7 +15,7 @@ MonoBehaviour:
   Points:
   - Location: {x: 0, y: 0}
     Delay: 0
-  - Location: {x: 0, y: -16}
-    Delay: 2
+  - Location: {x: 5, y: -8}
+    Delay: 0
   - Location: {x: 20, y: -16}
     Delay: 0

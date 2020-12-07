@@ -27,7 +27,7 @@ public class PoolManager : MonoBehaviour
         if (!pool)
         {
             Debug.LogWarning($"Pool '{target.name}' doesn't exist. Creating now.");
-            CreatePool(new PoolEntry(target, 10));
+            CreatePool(new PoolEntry(target, 10, 10f));
             pools.TryGetValue(target.name, out pool);
             return pool.GetComponent<Pool>();
         }
@@ -39,19 +39,19 @@ public class PoolManager : MonoBehaviour
         var poolObject = Instantiate(new GameObject(), transform);
         var pool = poolObject.AddComponent<Pool>();
         pool.Object = pattern.Object;
-        pool.StandardAmount = pattern.standardAmount;
+        pool.StandardAmount = pattern.StandardAmount;
         poolObject.name = pattern.Object.name;
         pools.Add(pattern.Object.name, poolObject);
     }
 
     public GameObject Activate(GameObject target, Vector2 position = new Vector2(), Quaternion rotation = new Quaternion())
     {
-        return GetPool(target).Activate(position);
+        return GetPool(target).Activate(position, rotation);
     }
 
     public GameObject Activate(GameObject target, Transform parent, Vector2 position = new Vector2(), Quaternion rotation = new Quaternion())
     {
-        return GetPool(target).Activate(parent, position);
+        return GetPool(target).Activate(parent, position, rotation);
     }
 
     public void Deactivate(GameObject target)
@@ -63,12 +63,14 @@ public class PoolManager : MonoBehaviour
 [Serializable]
 public struct PoolEntry
 {
-    public PoolEntry(GameObject type, int amount)
+    public PoolEntry(GameObject type, int amount, float extraTimeOut = 10)
     {
         Object = type;
-        standardAmount = amount;
+        StandardAmount = amount;
+        ExtraTimeOut = extraTimeOut;
     }
 
     public GameObject Object;
-    public int standardAmount;
+    public int StandardAmount;
+    public float ExtraTimeOut;
 }

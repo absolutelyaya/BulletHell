@@ -8,8 +8,11 @@ public class Pool : MonoBehaviour
     public GameObject Object;
     [SerializeField]
     public int StandardAmount;
+    [SerializeField]
+    public float ExtraTimeOut = 10f;
 
-    List<GameObject> entries = new List<GameObject>();
+    public List<GameObject> entries = new List<GameObject>();
+    public List<float> inactiveTime = new List<float>();
 
     void Start()
     {
@@ -21,7 +24,37 @@ public class Pool : MonoBehaviour
         }
     }
 
-    public GameObject Activate(Vector2 position = new Vector2())
+    //dis bish don't work
+    //private void Update()
+    //{
+    //    while (entries.Count > inactiveTime.Count) inactiveTime.Add(0f);
+    //    entries.RemoveAll(GameObject => GameObject == null);
+    //
+    //    if (entries.Count > StandardAmount)
+    //    {
+    //        int i = 0;
+    //        List<int> delete = new List<int>();
+    //        foreach (var item in entries)
+    //        {
+    //            if (entries.Count > StandardAmount) if (!item.activeSelf)
+    //            {
+    //                inactiveTime[i] += Time.deltaTime;
+    //                if(inactiveTime[i] > ExtraTimeOut)
+    //                {
+    //                    Destroy(item, 0.1f);
+    //                    inactiveTime.RemoveAt(i);
+    //                }
+    //            }
+    //            else
+    //            {
+    //                inactiveTime[i] = 0f;
+    //            }
+    //            i++;
+    //        }
+    //    }
+    //}
+
+    public GameObject Activate(Vector2 position = new Vector2(), Quaternion rotation = new Quaternion())
     {
         GameObject target = null;
         foreach (var item in entries)
@@ -36,14 +69,16 @@ public class Pool : MonoBehaviour
         {
             target = Instantiate(Object, transform);
             entries.Add(target);
+            inactiveTime.Add(0f);
             Debug.LogWarning($"Expanding pool '{gameObject.name}'");
         }
         target.transform.position = position;
+        target.transform.rotation = rotation;
         target.SetActive(true);
         return target;
     }
 
-    public GameObject Activate(Transform parent, Vector2 position = new Vector2())
+    public GameObject Activate(Transform parent, Vector2 position = new Vector2(), Quaternion rotation = new Quaternion())
     {
         GameObject target = null;
         foreach (var item in entries)
@@ -58,10 +93,13 @@ public class Pool : MonoBehaviour
         {
             target = Instantiate(Object, transform);
             entries.Add(target);
+            inactiveTime.Add(0f);
             Debug.LogWarning($"Expanding pool '{gameObject.name}'");
         }
         target.transform.parent = parent;
         target.transform.position = position;
+        target.transform.rotation = rotation;
+        target.GetComponent<Rigidbody2D>().simulated = true;
         target.SetActive(true);
         return target;
     }
@@ -74,4 +112,9 @@ public class Pool : MonoBehaviour
         target.transform.rotation = Quaternion.identity;
         target.SetActive(false);
     }
+}
+
+public interface IPoolEntry
+{
+    void OnDeactivate();
 }

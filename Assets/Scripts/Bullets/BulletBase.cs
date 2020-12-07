@@ -2,48 +2,70 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletBase : MonoBehaviour
+namespace Bullets
 {
-
-    public float Speed;
-    public bool Moves;
-    public bool HasLiveTime;
-    public float StartLiveTime;
-
-    float liveTime;
-
-    public virtual void OnEnable()
+    public class BulletBase : MonoBehaviour
     {
-        liveTime = StartLiveTime;
-        Moves = true;
-    }
 
-    void Update()
-    {
-        if(HasLiveTime)
+        public float Speed;
+        public bool Moves;
+        public bool HasLiveTime;
+        public float StartLiveTime;
+        public OffScreenBehaviour OffScreenBehaviour;
+        public int StartBounces;
+
+        float liveTime;
+        int bounces;
+
+        public virtual void OnEnable()
         {
-            liveTime -= Time.deltaTime;
-            if (liveTime <= 0) Death();
+            liveTime = StartLiveTime;
+            bounces = StartBounces;
+            Moves = true;
+        }
+
+        void Update()
+        {
+            if (HasLiveTime)
+            {
+                liveTime -= Time.deltaTime;
+                if (liveTime <= 0) Death();
+            }
+        }
+
+        public virtual void Death()
+        {
+            PoolManager.current.Deactivate(gameObject);
+        }
+
+        private void OnBecameInvisible()
+        {
+            PoolManager.current.Deactivate(gameObject);
+        }
+
+        private void FixedUpdate()
+        {
+            Move();
+        }
+
+        public virtual void Move()
+        {
+            if (Moves) transform.Translate(Vector2.up * Speed * Time.deltaTime, Space.Self);
+        }
+
+        public void Reflect()
+        {
+            if (bounces < 0) PoolManager.current.Deactivate(gameObject);
+            transform.rotation = Quaternion.Inverse(transform.rotation);
+            bounces--;
         }
     }
 
-    public virtual void Death()
+    public enum OffScreenBehaviour
     {
-        PoolManager.current.Deactivate(gameObject);
-    }
-
-    private void OnBecameInvisible()
-    {
-        PoolManager.current.Deactivate(gameObject);
-    }
-
-    private void FixedUpdate()
-    {
-        Move();
-    }
-
-    public virtual void Move()
-    {
-        if(Moves) transform.Translate(Vector2.up * Speed * Time.deltaTime, Space.Self);
+        Despawn,
+        Reflect,
+        Death,
+        None
     }
 }

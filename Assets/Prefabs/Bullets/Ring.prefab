@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 8701212736181399356}
   m_Layer: 0
   m_Name: Ring
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8701212736181399357
 Transform:
   m_ObjectHideFlags: 0
@@ -47,6 +47,8 @@ MonoBehaviour:
   Moves: 0
   HasLiveTime: 1
   StartLiveTime: 5
+  OffScreenBehaviour: 3
+  Bounces: 0
   Bullet: {fileID: 8868261923147093872, guid: 647cb031577687d43a132bc0f7d932fb, type: 3}
   Elements: 5
   SideBob: 1.25

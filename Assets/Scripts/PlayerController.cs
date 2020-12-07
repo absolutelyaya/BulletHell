@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    public static PlayerController Current;
+
     public float BaseSpeed;
     public float FocusSpeedMultiplier;
 
@@ -13,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        Current = this;
         rb = GetComponent<Rigidbody2D>();
         speed = BaseSpeed;
     }
