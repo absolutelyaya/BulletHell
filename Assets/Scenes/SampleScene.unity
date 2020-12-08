@@ -398,22 +398,22 @@ MonoBehaviour:
   - Entity: {fileID: 6844484021280618970, guid: a2a4f7aabb0bcc443a578ad84cd3d0c5,
       type: 3}
     Delay: 2
-    Position: {x: 0, y: 12}
+    Position: {x: -5, y: 12}
     Rotation: 0
   - Entity: {fileID: 6844484021280618970, guid: a2a4f7aabb0bcc443a578ad84cd3d0c5,
       type: 3}
     Delay: 2
-    Position: {x: 0, y: 12}
+    Position: {x: -5, y: 12}
     Rotation: 0
   - Entity: {fileID: 6844484021280618970, guid: a2a4f7aabb0bcc443a578ad84cd3d0c5,
       type: 3}
     Delay: 2
-    Position: {x: 0, y: 12}
+    Position: {x: -5, y: 12}
     Rotation: 0
   - Entity: {fileID: 6844484021280618970, guid: a2a4f7aabb0bcc443a578ad84cd3d0c5,
       type: 3}
     Delay: 2
-    Position: {x: 0, y: 12}
+    Position: {x: -5, y: 12}
     Rotation: 0
 --- !u!4 &382484840
 Transform:
@@ -1031,7 +1031,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6844484021234683997}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 11, z: 0}
+  m_LocalPosition: {x: 4, y: 11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6390699162421853527}
@@ -1129,6 +1129,8 @@ MonoBehaviour:
   Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
   InvertPath: 1
   DespawnOffscreen: 1
+  IsOffScreen: 0
+  originPosition: {x: 0, y: 0}
 --- !u!50 &6844484021234683999
 Rigidbody2D:
   serializedVersion: 4

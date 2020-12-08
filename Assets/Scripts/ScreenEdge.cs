@@ -14,6 +14,7 @@ public class ScreenEdge : MonoBehaviour
                 if (enemy)
                 {
                     if (enemy.DespawnOffscreen) PoolManager.current.Deactivate(collision.gameObject);
+                    else enemy.IsOffScreen = true;
                 }
                 else throw new MissingComponentException($"{collision.name} has the Enemy tag, but no script inheriting from 'EnemyBase'");
                 break;
@@ -35,6 +36,29 @@ public class ScreenEdge : MonoBehaviour
                         case OffScreenBehaviour.None:
                             break;
                     }
+                }
+                else throw new MissingComponentException($"{collision.name} has the Bullet tag, but no script inheriting from 'BulletBase'");
+                break;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch(collision.tag)
+        {
+            case "Enemy":
+                collision.TryGetComponent(out EnemyBase enemy);
+                if (enemy)
+                {
+                    enemy.IsOffScreen = false;
+                }
+                else throw new MissingComponentException($"{collision.name} has the Enemy tag, but no script inheriting from 'EnemyBase'");
+                break;
+            case "Bullet":
+                collision.TryGetComponent(out BulletBase bullet);
+                if (bullet)
+                {
+                    bullet.IsOffScreen = false;
                 }
                 else throw new MissingComponentException($"{collision.name} has the Bullet tag, but no script inheriting from 'BulletBase'");
                 break;
