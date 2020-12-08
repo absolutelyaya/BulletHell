@@ -48,6 +48,8 @@ public class Ring : BulletBase
             newElement.GetComponent<SpriteRenderer>().color = color;
             newElement.GetComponent<BulletBase>().Moves = false;
             newElement.GetComponent<Rigidbody2D>().simulated = false;
+            GetComponent<CircleCollider2D>().radius = Distance + 0.45f + 
+                (Mathf.Clamp(Elements - 4, 0, Mathf.Infinity) * 0.125f) * Mathf.Pow(1.00001f, Elements);
         }
     }
 
@@ -83,9 +85,13 @@ public class Ring : BulletBase
         }
         foreach (var item in CurrentElements)
         {
-            item.GetComponent<BulletBase>().Moves = true;
-            item.GetComponent<Rigidbody2D>().simulated = true;
-            item.transform.parent = PoolManager.current.GetPool(item).transform;
+            if (!IsOffScreen)
+            {
+                item.GetComponent<BulletBase>().Moves = true;
+                item.GetComponent<Rigidbody2D>().simulated = true;
+                item.transform.parent = PoolManager.current.GetPool(item).transform;
+            }
+            else PoolManager.current.Deactivate(item);
         }
         base.Death();
     }

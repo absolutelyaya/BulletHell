@@ -14,12 +14,13 @@ public class EnemyBase : MonoBehaviour
     public PathScriptableObject Path;
     public bool InvertPath;
     public bool DespawnOffscreen = true;
+    public bool IsOffScreen;
 
-    Vector2 OriginPosition;
+    public Vector2 originPosition;
 
     protected void OnEnable()
     {
-        OriginPosition = transform.position;
+        originPosition = transform.position;
         if(Path) StartCoroutine(FollowPath());
     }
 
@@ -38,10 +39,10 @@ public class EnemyBase : MonoBehaviour
         for (int i = 0; i < Path.Points.Count; i++)
         {
             Vector2 Goal = Vector2.Scale(Path.Points[i].Location, InvertPath ? new Vector2(-1, 1) : Vector2.one);
-            while (Vector2.Distance(transform.position, Goal + OriginPosition) > 0.1f)
+            while (Vector2.Distance(transform.position, Goal + originPosition) > 0.1f)
             {
                 yield return new WaitForFixedUpdate();
-                transform.Translate(((Goal + OriginPosition) - (Vector2)transform.position).normalized * Speed * Time.deltaTime);
+                transform.Translate(((Goal + originPosition) - (Vector2)transform.position).normalized * Speed * Time.deltaTime);
             }
             yield return new WaitForSeconds(Path.Points[i].Delay);
         }
@@ -67,19 +68,18 @@ public class EnemyBase : MonoBehaviour
         if(Path)
         {
             for (int i = 1; i < Path.Points.Count; i++)
-            {
-                Gizmos.DrawLine((Vector2)transform.position + Path.Points[i - 1].Location, 
-                    (Vector2)transform.position + Path.Points[i].Location);
+            { 
+                Gizmos.DrawLine(
+                    Application.isPlaying ? originPosition : (Vector2)transform.position +
+                    Vector2.Scale(Path.Points[i - 1].Location, InvertPath ? new Vector2(-1, 1) : Vector2.one),
+                    Application.isPlaying ? originPosition : (Vector2)transform.position + 
+                    Vector2.Scale(Path.Points[i].Location, InvertPath ? new Vector2(-1, 1) : Vector2.one));
             }
         }
-    }
-
-    private void OnDrawGizmos()
-    {
         if (FireDirectionObject)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(FireDirectionObject.position, FireDirectionObject.position + 
+            Gizmos.DrawLine(FireDirectionObject.position, FireDirectionObject.position +
                 Quaternion.AngleAxis(FireDirectionObject.eulerAngles.z, Vector3.forward * 2) * transform.up * 2);
         }
     }

@@ -36,11 +36,11 @@ public class PoolManager : MonoBehaviour
 
     void CreatePool(PoolEntry pattern)
     {
-        var poolObject = Instantiate(new GameObject(), transform);
+        var poolObject = new GameObject(pattern.Object.name);
+        poolObject.transform.parent = transform;
         var pool = poolObject.AddComponent<Pool>();
         pool.Object = pattern.Object;
         pool.StandardAmount = pattern.StandardAmount;
-        poolObject.name = pattern.Object.name;
         pools.Add(pattern.Object.name, poolObject);
     }
 

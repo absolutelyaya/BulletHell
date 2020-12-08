@@ -12,6 +12,7 @@ namespace Bullets
         public bool HasLiveTime;
         public float StartLiveTime;
         public OffScreenBehaviour OffScreenBehaviour;
+        public bool IsOffScreen;
         public int StartBounces;
 
         float liveTime;

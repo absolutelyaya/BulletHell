@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8701212736181399357}
   - component: {fileID: 8701212736181399356}
+  - component: {fileID: 2958839225897304904}
+  - component: {fileID: 4650425949309711687}
   m_Layer: 0
   m_Name: Ring
   m_TagString: Bullet
@@ -48,10 +50,48 @@ MonoBehaviour:
   HasLiveTime: 1
   StartLiveTime: 5
   OffScreenBehaviour: 3
-  Bounces: 0
+  IsOffScreen: 0
+  StartBounces: 0
   Bullet: {fileID: 8868261923147093872, guid: 647cb031577687d43a132bc0f7d932fb, type: 3}
   Elements: 5
   SideBob: 1.25
   RotationSpeed: 15
   Distance: 0
   RandomizedValues: 1
+--- !u!58 &2958839225897304904
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8701212736181399359}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.67
+--- !u!50 &4650425949309711687
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8701212736181399359}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

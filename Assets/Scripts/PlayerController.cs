@@ -38,4 +38,9 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition((Vector2)transform.position + direction * speed * Time.deltaTime);
         //transform.rotation = Quaternion.Euler(new Vector3(0, InputManager.GetAxisRaw("MoveRight") * 30, 0));
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
 }
