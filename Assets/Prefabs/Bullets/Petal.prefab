@@ -13,13 +13,13 @@ GameObject:
   - component: {fileID: 8868261923147093874}
   - component: {fileID: 7541433151122372728}
   - component: {fileID: 6866675185089427225}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Petal
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8868261923147093884
 Transform:
   m_ObjectHideFlags: 0
@@ -97,7 +97,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.15}
   serializedVersion: 2
   m_Radius: 0.0945
 --- !u!50 &7541433151122372728
@@ -138,7 +138,8 @@ MonoBehaviour:
   HasLiveTime: 0
   StartLiveTime: 0
   OffScreenBehaviour: 0
-  Bounces: 1
+  IsOffScreen: 0
+  StartBounces: 0
   PetalColors:
   - {r: 0.8981725, g: 0.8156863, b: 1, a: 1}
   - {r: 0.97572327, g: 0.75, b: 1, a: 1}

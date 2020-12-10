@@ -22,6 +22,7 @@ public class ScreenEdge : MonoBehaviour
                 collision.TryGetComponent(out BulletBase bullet);
                 if (bullet)
                 {
+                    bullet.IsOffScreen = true;
                     switch(bullet.OffScreenBehaviour)
                     {
                         case OffScreenBehaviour.Despawn:

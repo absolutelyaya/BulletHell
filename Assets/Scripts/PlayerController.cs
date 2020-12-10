@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
 
     public static PlayerController Current;
 
+    public int Health;
     public float BaseSpeed;
     public float FocusSpeedMultiplier;
 
@@ -41,6 +43,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if(collision.CompareTag("Bullet"))
+        {
+            Health--;
+            Debug.Log("Player was Hit");
+            if(Health <= 0) SceneManager.LoadScene("SampleScene");
+        }
     }
 }
