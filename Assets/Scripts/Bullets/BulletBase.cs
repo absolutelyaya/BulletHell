@@ -7,6 +7,7 @@ namespace Bullets
     public class BulletBase : MonoBehaviour
     {
 
+        public BulletType Type;
         public float Speed;
         public bool Moves;
         public bool HasLiveTime;
@@ -62,11 +63,20 @@ namespace Bullets
         }
     }
 
+    [System.Serializable]
     public enum OffScreenBehaviour
     {
         Despawn,
         Reflect,
         Death,
         None
+    }
+
+    [System.Serializable]
+    public enum BulletType
+    {
+        Base,
+        Petal,
+        Ring
     }
 }

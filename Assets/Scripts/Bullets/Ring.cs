@@ -98,13 +98,6 @@ public class Ring : BulletBase
 
     private void OnDrawGizmosSelected()
     {
-        float distance = Distance + 0.45f + Mathf.Clamp(Elements - 4, 0, Mathf.Infinity) * 0.125f * Mathf.Pow(1.00001f, Elements) / 2;
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(transform.position, distance);
-        Gizmos.color = Color.red;
-        for (int i = 0; i < Elements; i++)
-        {
-            Gizmos.DrawWireSphere(transform.position + Quaternion.AngleAxis(360f / Elements * i, Vector3.forward * distance) * transform.up * distance, 0.1f);
-        }
+        yayasGizmos.DrawRing(transform.position, Elements, Distance);
     }
 }
