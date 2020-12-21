@@ -293,17 +293,18 @@ MonoBehaviour:
   Errors: 
   Warnings: 
   Level:
-  - Type: 0
+  - Type: 1
     Previewing: 0
-    Entity: {fileID: 6844484021280618970, guid: a2a4f7aabb0bcc443a578ad84cd3d0c5,
+    Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
     Delay: 1
     Position: {x: 0, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 5
@@ -319,10 +320,11 @@ MonoBehaviour:
     Delay: 0.1
     Position: {x: 1, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 6
@@ -333,15 +335,16 @@ MonoBehaviour:
     hasWarnings: 0
   - Type: 1
     Previewing: 0
-    Entity: {fileID: 8868261923147093872, guid: 647cb031577687d43a132bc0f7d932fb,
+    Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
     Delay: 0.1
     Position: {x: 2, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 7
@@ -357,10 +360,11 @@ MonoBehaviour:
     Delay: 0.1
     Position: {x: 3, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 8
@@ -376,10 +380,11 @@ MonoBehaviour:
     Delay: 0.1
     Position: {x: 4, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 5
@@ -395,13 +400,14 @@ MonoBehaviour:
     Delay: 0.1
     Position: {x: 5, y: 12}
     Rotation: 0
-    Speed: 1.5
-    SpecificsExpanded: 0
+    SpecificsExpanded: 1
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
-    RingElements: 5
+    RingElements: 9
     RingDistance: 0
     RingBullets: {fileID: 8868261923147093872, guid: 647cb031577687d43a132bc0f7d932fb,
       type: 3}
@@ -414,13 +420,14 @@ MonoBehaviour:
     Delay: 0.1
     Position: {x: 6, y: 12}
     Rotation: 0
-    Speed: 1.5
-    SpecificsExpanded: 0
+    SpecificsExpanded: 1
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
-    RingElements: 5
+    RingElements: 10
     RingDistance: 0
     RingBullets: {fileID: 8868261923147093872, guid: 647cb031577687d43a132bc0f7d932fb,
       type: 3}
@@ -433,10 +440,11 @@ MonoBehaviour:
     Delay: 1
     Position: {x: 0, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 5
@@ -452,10 +460,11 @@ MonoBehaviour:
     Delay: 0.1
     Position: {x: -1, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 5
@@ -471,10 +480,11 @@ MonoBehaviour:
     Delay: 0.1
     Position: {x: -2, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 5
@@ -490,10 +500,11 @@ MonoBehaviour:
     Delay: 0.1
     Position: {x: -3, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 5
@@ -509,10 +520,11 @@ MonoBehaviour:
     Delay: 0.1
     Position: {x: -4, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 5
@@ -528,10 +540,11 @@ MonoBehaviour:
     Delay: 0.1
     Position: {x: -5, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 5
@@ -547,10 +560,11 @@ MonoBehaviour:
     Delay: 0.1
     Position: {x: -6, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 5
@@ -566,10 +580,11 @@ MonoBehaviour:
     Delay: 5
     Position: {x: 0, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 5
@@ -585,10 +600,11 @@ MonoBehaviour:
     Delay: 1
     Position: {x: 1, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 5
@@ -604,10 +620,11 @@ MonoBehaviour:
     Delay: 0
     Position: {x: -1, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 5
@@ -623,10 +640,11 @@ MonoBehaviour:
     Delay: 1
     Position: {x: 2, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 5
@@ -642,10 +660,11 @@ MonoBehaviour:
     Delay: 0
     Position: {x: -2, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 5
@@ -661,10 +680,11 @@ MonoBehaviour:
     Delay: 1
     Position: {x: 3, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 5
@@ -680,10 +700,11 @@ MonoBehaviour:
     Delay: 0
     Position: {x: -3, y: 12}
     Rotation: 0
-    Speed: 1.5
     SpecificsExpanded: 0
+    SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 5
@@ -699,10 +720,11 @@ MonoBehaviour:
     Delay: 2
     Position: {x: -5, y: 12}
     Rotation: 0
-    Speed: 3
     SpecificsExpanded: 0
+    SpeedConst: 3
     Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
     FlipPath: 0
+    SpeedRange: {x: 0, y: 0}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 0
@@ -717,10 +739,11 @@ MonoBehaviour:
     Delay: 2
     Position: {x: -5, y: 12}
     Rotation: 0
-    Speed: 3
     SpecificsExpanded: 0
+    SpeedConst: 3
     Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
     FlipPath: 0
+    SpeedRange: {x: 0, y: 0}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 0
@@ -735,10 +758,11 @@ MonoBehaviour:
     Delay: 2
     Position: {x: -5, y: 12}
     Rotation: 0
-    Speed: 3
     SpecificsExpanded: 0
+    SpeedConst: 3
     Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
     FlipPath: 0
+    SpeedRange: {x: 0, y: 0}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 0
@@ -753,10 +777,11 @@ MonoBehaviour:
     Delay: 2
     Position: {x: -5, y: 12}
     Rotation: 0
-    Speed: 3
     SpecificsExpanded: 0
+    SpeedConst: 3
     Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
     FlipPath: 0
+    SpeedRange: {x: 0, y: 0}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 0
@@ -770,10 +795,11 @@ MonoBehaviour:
     Delay: 5
     Position: {x: 5, y: 12}
     Rotation: 0
-    Speed: 3
     SpecificsExpanded: 0
+    SpeedConst: 3
     Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
     FlipPath: 1
+    SpeedRange: {x: 0, y: 0}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 0
@@ -787,10 +813,11 @@ MonoBehaviour:
     Delay: 2
     Position: {x: 5, y: 12}
     Rotation: 0
-    Speed: 3
-    SpecificsExpanded: 0
+    SpecificsExpanded: 1
+    SpeedConst: 3
     Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
     FlipPath: 1
+    SpeedRange: {x: 0, y: 0}
     OffScrBhv: 0
     Bounces: 0
     RingElements: 0

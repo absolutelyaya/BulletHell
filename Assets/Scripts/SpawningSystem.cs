@@ -85,7 +85,7 @@ public class SpawningSystem : MonoBehaviour
                         Quaternion.Euler(0, 0, curEntry.Rotation)).GetComponent<EnemyBase>();
                     enemy.Path = curEntry.Path;
                     enemy.InvertPath = curEntry.FlipPath;
-                    enemy.Speed = curEntry.Speed;
+                    enemy.Speed = curEntry.SpeedConst;
                     break;
                 case SpawnEntry.EntryType.Bullet:
                     BulletBase bullet = PoolManager.current.Activate(curEntry.Entity, curEntry.Position, 
@@ -94,12 +94,12 @@ public class SpawningSystem : MonoBehaviour
                     {
                         case BulletType.Base:
                         case BulletType.Petal:
-                            bullet.Speed = curEntry.Speed;
+                            bullet.Speed = UnityEngine.Random.Range(curEntry.SpeedRange.x, curEntry.SpeedRange.y);
                             bullet.OffScreenBehaviour = curEntry.OffScrBhv;
                             bullet.StartBounces = curEntry.Bounces;
                             break;
                         case BulletType.Ring:
-                            bullet.Speed = curEntry.Speed;
+                            bullet.Speed = UnityEngine.Random.Range(curEntry.SpeedRange.x, curEntry.SpeedRange.y);
                             Ring ring = bullet.gameObject.GetComponent<Ring>();
                             ring.Bullet = curEntry.RingBullets;
                             ring.Elements = curEntry.RingElements;
@@ -131,7 +131,7 @@ public class SpawnEntry
         Rotation = rotation;
         Path = path;
         FlipPath = flipPath;
-        Speed = speed;
+        SpeedConst = speed;
     }
 
     /// <summary>
@@ -146,7 +146,7 @@ public class SpawnEntry
         Delay = delay;
         Position = position;
         Rotation = rotation;
-        Speed = speed;
+        SpeedConst = speed;
         OffScrBhv = offScrBhv;
         Bounces = bounces;
     }
@@ -157,12 +157,13 @@ public class SpawnEntry
     public float Delay;
     public Vector2 Position;
     public float Rotation;
-    public float Speed;
     public bool SpecificsExpanded;
     //EnemySpecific
-    public PathScriptableObject Path;
+        public float SpeedConst;
+        public PathScriptableObject Path;
         public bool FlipPath;
     //BulletSpecifics
+        public Vector2 SpeedRange;
         public OffScreenBehaviour OffScrBhv;
         public int Bounces;
         //Ring

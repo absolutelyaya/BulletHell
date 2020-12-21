@@ -82,6 +82,7 @@ public class SpawnEntryDrawer : PropertyDrawer
         {
             if (property.FindPropertyRelative("Path").objectReferenceValue == null) error = "This Enemy doesn't have a Path!";
             if (!obj.GetComponent<EnemyBase>()) error = "Entity isn't an Enemy!";
+            if (property.FindPropertyRelative("SpeedConst").floatValue == 0) warning = "Speed is 0!";
         }
         if (property.FindPropertyRelative("Entity").objectReferenceValue == null) error = "You have to declare an entity to spawn!";
         if (type == 1)
@@ -89,8 +90,9 @@ public class SpawnEntryDrawer : PropertyDrawer
             if (!obj.GetComponent<BulletBase>()) error = "Entity isn't a Bullet!";
             if (property.FindPropertyRelative("RingBullets").objectReferenceValue == null &&
                 obj.GetComponent<BulletBase>().Type == BulletType.Ring) error = "This Ring doesn't have assigned Child Bullets!";
+            Vector2 speedRange = property.FindPropertyRelative("SpeedRange").vector2Value;
+            if (speedRange.x == 0 || speedRange.y == 0) warning = "Speed can be 0!";
         }
-        if (property.FindPropertyRelative("Speed").floatValue == 0) warning = "Speed is 0!";
 
         var warnRect = new Rect(position.x, position.y, position.width, 32);
         if(error != string.Empty || warning != string.Empty) position.y += 36;
@@ -106,10 +108,6 @@ public class SpawnEntryDrawer : PropertyDrawer
         position.y += 18;
         var typeSpecificRect = new Rect(position.x, position.y, position.width, 18);
         var typeSpecificDropdownRect = new Rect(position.x, position.y, 25, 18);
-        //Enemy Specific Rects
-        if (type == 0 && specificsExpanded.boolValue) position.y += 18;
-        var pathRect = new Rect(position.x, position.y, position.width - 43, 18);
-        var flipPathRect = new Rect(position.x + position.width - 43, position.y, position.width - 43, 18);
 
         //Drawing everything
         if (selected) EditorGUI.DrawRect(bgRect, new Color(38 / 255f, 127 / 255f, 0f));
@@ -123,7 +121,7 @@ public class SpawnEntryDrawer : PropertyDrawer
         else property.FindPropertyRelative("hasWarnings").boolValue = false;
         if (error != string.Empty)
         {
-            EditorGUI.DrawRect(warnRect, new Color(104 / 255f, 20 / 255f, 20 / 255f));
+            EditorGUI.DrawRect(warnRect, new Color(91 / 255f, 91 / 255f, 91 / 255f));
             EditorGUI.HelpBox(warnRect, error, MessageType.Error);
             property.FindPropertyRelative("hasErrors").boolValue = true;
         }
@@ -137,28 +135,37 @@ public class SpawnEntryDrawer : PropertyDrawer
         EditorGUIUtility.labelWidth = 25.0f;
         EditorGUI.PropertyField(rotationRect, property.FindPropertyRelative("Rotation"), new GUIContent("Rot", "Z Rotation"));
         EditorGUIUtility.labelWidth = 40.0f;
-        EditorGUI.PropertyField(speedRect, property.FindPropertyRelative("Speed"), new GUIContent("Speed"));
+        var specificsHeaderRect = new Rect(position.x, position.y, position.width, 18);
+        EditorGUI.DrawRect(specificsHeaderRect, new Color(91 / 255f, 91 / 255f, 91 / 255f));
+        if (GUI.Button(typeSpecificDropdownRect, new GUIContent(specificsExpanded.boolValue ? "▲" : "▼")))
+            specificsExpanded.boolValue = !specificsExpanded.boolValue;
         if (type == 0) //Enemy Specific
         {
+            EditorGUI.PropertyField(speedRect, property.FindPropertyRelative("SpeedConst"), new GUIContent("Speed"));
             EditorGUI.LabelField(typeSpecificRect, "Enemy Specific", labelStyle);
-            if (GUI.Button(typeSpecificDropdownRect, new GUIContent(specificsExpanded.boolValue ? "▲" : "▼"))) 
-                specificsExpanded.boolValue = !specificsExpanded.boolValue;
             if (specificsExpanded.boolValue)
             {
+                position.y += 18;
+                var specificsBGRect = new Rect(position.x, position.y, position.width, 18);
+                EditorGUI.DrawRect(specificsBGRect, new Color(91 / 255f, 91 / 255f, 91 / 255f));
                 EditorGUIUtility.labelWidth = 35.0f;
+                var pathRect = new Rect(position.x, position.y, position.width - 43, 18);
                 EditorGUI.PropertyField(pathRect, property.FindPropertyRelative("Path"), new GUIContent("Path"));
                 EditorGUIUtility.labelWidth = 25.0f;
+                var flipPathRect = new Rect(position.x + position.width - 43, position.y, position.width - 43, 18);
                 EditorGUI.PropertyField(flipPathRect, property.FindPropertyRelative("FlipPath"), new GUIContent("Flip"));
             }
         }
         if (type == 1) //Bullet Specific
         {
+            EditorGUI.PropertyField(speedRect, property.FindPropertyRelative("SpeedRange"), new GUIContent("Speed"));
             EditorGUI.LabelField(typeSpecificRect, "Bullet Specific", labelStyle);
-            if (GUI.Button(typeSpecificDropdownRect, new GUIContent(specificsExpanded.boolValue ? "▲" : "▼"))) 
-                specificsExpanded.boolValue = !specificsExpanded.boolValue;
             if (specificsExpanded.boolValue)
             {
                 position.y += 18;
+                var specificsBGRect = new Rect(position.x, position.y, position.width, 36);
+                EditorGUI.DrawRect(specificsBGRect, new Color(91 / 255f, 91 / 255f, 91 / 255f));
+
                 var offscrBhvRect = new Rect(position.x, position.y, position.width, 18);
                 if (property.FindPropertyRelative("OffScrBhv").enumValueIndex == 1) offscrBhvRect.width -= 35;
                 var bouncesRect = new Rect(position.x + position.width - 35, position.y, 35, 18);
@@ -168,7 +175,7 @@ public class SpawnEntryDrawer : PropertyDrawer
                 EditorGUI.PropertyField(offscrBhvRect, property.FindPropertyRelative("OffScrBhv"), new GUIContent("OffscrBhv", "Offscreen Behaviour"));
 
                 obj = (GameObject)property.FindPropertyRelative("Entity").objectReferenceValue;
-                obj.TryGetComponent<BulletBase>(out BulletBase bullet);
+                obj.TryGetComponent(out BulletBase bullet);
                 position.y += 18;
                 var bulletTypeRect = new Rect(position.x, position.y, position.width, 18);
                 if (bullet) switch (bullet.Type)
@@ -180,6 +187,8 @@ public class SpawnEntryDrawer : PropertyDrawer
                         case BulletType.Ring:
                             EditorGUI.LabelField(bulletTypeRect, "Unique Ring Bullet fields", smallLabelStyle);
                             position.y += 18;
+                            var ringBGRect = new Rect(position.x, position.y, position.width, 38);
+                            EditorGUI.DrawRect(ringBGRect, new Color(91 / 255f, 91 / 255f, 91 / 255f));
                             var bulletRect = new Rect(position.x, position.y, position.width - 35, 18);
                             var elementsRect = new Rect(position.x + position.width - 35, position.y, 35, 18);
                             EditorGUIUtility.labelWidth = 10.0f;
