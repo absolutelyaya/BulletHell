@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-
+using Bullets;
 
 public class Ring : BulletBase
 {
@@ -23,37 +23,48 @@ public class Ring : BulletBase
             RotationSpeed = Random.Range(-3f, 3f);
             Speed = Random.Range(1.5f, 3f);
         }
-        Invoke("SpawnPetals", 0.1f);
+        Invoke("SpawnElements", 0.1f);
     }
-    
-    public void SpawnPetals()
+
+    private void OnDisable()
     {
-        Color color = Color.clear;
-        DestroyPetals();
-        for (int i = 0; i < Elements; i++)
+        foreach (Transform child in transform)
         {
-            GameObject newPetal = PoolManager.current.Activate(Bullet, transform, transform.position);
-            if (color == Color.clear) color = newPetal.GetComponent<SpriteRenderer>().color;
-            newPetal.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 360f / Elements * i));
-            newPetal.transform.position += newPetal.transform.up * 
-                (Distance + 0.45f + (Mathf.Clamp(Elements - 4, 0, Mathf.Infinity) * 0.125f) * Mathf.Pow(1.00001f, Elements));
-            newPetal.GetComponent<SpriteRenderer>().color = color;
-            newPetal.GetComponent<BulletBase>().Moves = false;
+            if(child.GetComponent<BulletBase>()) PoolManager.current.Deactivate(child.gameObject);
         }
     }
 
-    void DestroyPetals()
+    public void SpawnElements()
     {
-        List<GameObject> CurrentPetals = new List<GameObject>();
+        Color color = Color.clear;
+        DestroyElements();
+        for (int i = 0; i < Elements; i++)
+        {
+            GameObject newElement = PoolManager.current.Activate(Bullet, transform, transform.position);
+            if (color == Color.clear) color = newElement.GetComponent<SpriteRenderer>().color;
+            newElement.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 360f / Elements * i));
+            newElement.transform.position += newElement.transform.up * 
+                (Distance + 0.45f + (Mathf.Clamp(Elements - 4, 0, Mathf.Infinity) * 0.125f) * Mathf.Pow(1.00001f, Elements));
+            newElement.GetComponent<SpriteRenderer>().color = color;
+            newElement.GetComponent<BulletBase>().Moves = false;
+            newElement.GetComponent<Rigidbody2D>().simulated = false;
+            GetComponent<CircleCollider2D>().radius = Distance + 0.45f + 
+                (Mathf.Clamp(Elements - 4, 0, Mathf.Infinity) * 0.125f) * Mathf.Pow(1.00001f, Elements);
+        }
+    }
+
+    void DestroyElements()
+    {
+        List<GameObject> CurrentElements = new List<GameObject>();
         foreach (Transform child in transform)
         {
-            CurrentPetals.Add(child.gameObject);
+            CurrentElements.Add(child.gameObject);
         }
-        if (CurrentPetals.Count > 0) for (int i = 0; i < CurrentPetals.Count; i++)
+        if (CurrentElements.Count > 0) for (int i = 0; i < CurrentElements.Count; i++)
         {
-            PoolManager.current.Deactivate(CurrentPetals[i]);
-        }
-        CurrentPetals = new List<GameObject>();
+            PoolManager.current.Deactivate(CurrentElements[i]);
+            }
+        CurrentElements = new List<GameObject>();
     }
 
     public override void Move()
@@ -67,28 +78,26 @@ public class Ring : BulletBase
 
     public override void Death()
     {
-        List<GameObject> CurrentPetals = new List<GameObject>();
+        List<GameObject> CurrentElements = new List<GameObject>();
         foreach (Transform child in transform)
         {
-            CurrentPetals.Add(child.gameObject);
+            CurrentElements.Add(child.gameObject);
         }
-        foreach (var item in CurrentPetals)
+        foreach (var item in CurrentElements)
         {
-            item.GetComponent<BulletBase>().Moves = true;
-            item.transform.parent = PoolManager.current.GetPool(item).transform;
+            if (!IsOffScreen)
+            {
+                item.GetComponent<BulletBase>().Moves = true;
+                item.GetComponent<Rigidbody2D>().simulated = true;
+                item.transform.parent = PoolManager.current.GetPool(item).transform;
+            }
+            else PoolManager.current.Deactivate(item);
         }
         base.Death();
     }
 
     private void OnDrawGizmosSelected()
     {
-        float distance = Distance + 0.45f + Mathf.Clamp(Elements - 4, 0, Mathf.Infinity) * 0.125f * Mathf.Pow(1.00001f, Elements) / 2;
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(transform.position, distance);
-        Gizmos.color = Color.red;
-        for (int i = 0; i < Elements; i++)
-        {
-            Gizmos.DrawWireSphere(transform.position + Quaternion.AngleAxis(360f / Elements * i, Vector3.forward * distance) * transform.up * distance, 0.1f);
-        }
+        yayasGizmos.DrawRing(transform.position, Elements, Distance);
     }
 }
