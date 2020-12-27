@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class yayasGizmos
 {
-    public static void DrawArrow(Vector3 from, Vector3 to, float headAngle, float headLength)
+    public static void DrawArrow(Vector3 from, Vector3 to, float headAngle = 15f, float headLength = 0.5f)
     {
         Gizmos.DrawLine(from, to);
         Gizmos.DrawLine(to, to + Quaternion.LookRotation((to - from).normalized) * Quaternion.Euler(0, 180 + headAngle, 0) * new Vector3(0, 0, 1) * headLength);
