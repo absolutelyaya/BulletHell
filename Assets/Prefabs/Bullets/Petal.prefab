@@ -135,11 +135,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 1
   Speed: 10
+  StartLiveTime: 0
   Moves: 0
   HasLiveTime: 0
-  StartLiveTime: 0
-  OffScreenBehaviour: 0
   IsOffScreen: 0
+  OffScreenBehaviour: 0
   StartBounces: 0
   PetalColors:
   - {r: 0.8981725, g: 0.8156863, b: 1, a: 1}

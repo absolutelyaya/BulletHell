@@ -47,14 +47,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 2
   Speed: 1.5
+  StartLiveTime: 5
   Moves: 0
   HasLiveTime: 1
-  StartLiveTime: 5
-  OffScreenBehaviour: 3
   IsOffScreen: 0
+  OffScreenBehaviour: 3
   StartBounces: 0
   Bullet: {fileID: 8868261923147093872, guid: 647cb031577687d43a132bc0f7d932fb, type: 3}
-  Elements: 5
+  Elements: 3
   SideBob: 1.25
   RotationSpeed: 15
   Distance: 0

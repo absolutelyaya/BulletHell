@@ -8,12 +8,9 @@ namespace Bullets
     {
 
         public BulletType Type;
-        public float Speed;
-        public bool Moves;
-        public bool HasLiveTime;
-        public float StartLiveTime;
+        public float Speed, StartLiveTime;
+        public bool Moves, HasLiveTime, IsOffScreen;
         public OffScreenBehaviour OffScreenBehaviour;
-        public bool IsOffScreen;
         public int StartBounces;
 
         float liveTime;
@@ -60,6 +57,11 @@ namespace Bullets
             if (bounces < 0) PoolManager.current.Deactivate(gameObject);
             transform.rotation = Quaternion.Inverse(transform.rotation);
             bounces--;
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            yayasGizmos.DrawArrow(transform.position, transform.position + Quaternion.AngleAxis(transform.rotation.z, Vector3.forward) * transform.up * 1f);
         }
     }
 
