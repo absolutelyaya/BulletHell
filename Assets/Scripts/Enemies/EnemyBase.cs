@@ -6,22 +6,26 @@ using EnemyNavigation;
 public class EnemyBase : MonoBehaviour
 {
 
-    public float Speed;
-    public float FireRate;
-    public float Spread;
+    public int StartHealth;
+    public float Speed, FireRate, Spread;
     public GameObject Projectile;
     public Transform FireDirectionObject;
     public PathScriptableObject Path;
-    public bool InvertPath;
-    public bool DespawnOffscreen = true;
-    public bool IsOffScreen;
+    public bool InvertPath, DespawnOffscreen = true, IsOffScreen;
 
-    public Vector2 originPosition;
+    private Vector2 originPosition;
+    private int health;
 
     protected void OnEnable()
     {
+        health = StartHealth;
         originPosition = transform.position;
         if(Path) StartCoroutine(FollowPath());
+    }
+
+    private void Update()
+    {
+        if (health <= 0) Death();
     }
 
     protected void OnBecameVisible()
@@ -82,5 +86,19 @@ public class EnemyBase : MonoBehaviour
             Gizmos.DrawLine(FireDirectionObject.position, FireDirectionObject.position +
                 Quaternion.AngleAxis(FireDirectionObject.eulerAngles.z, Vector3.forward * 2) * transform.up * 2);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("PlayerBullet"))
+        {
+            health--;
+            PoolManager.current.Deactivate(collision.gameObject);
+        }
+    }
+
+    public virtual void Death()
+    {
+        PoolManager.current.Deactivate(gameObject);
     }
 }
