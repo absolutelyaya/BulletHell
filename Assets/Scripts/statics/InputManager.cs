@@ -8,9 +8,7 @@ using InputStructs;
 public static class InputManager
 {
     private static Dictionary<string, KeyCode> keyBinds;
-    public static Dictionary<string, KeyCode> KeyBinds { get; private set; }
     private static Dictionary<string, InputAxis> axes;
-    public static Dictionary<string, InputAxis> Axes { get; private set; }
 
     static readonly string[] bindNames = new string[]
     {
