@@ -11,9 +11,13 @@ public class PlayerController : MonoBehaviour
     public int Health;
     public float BaseSpeed;
     public float FocusSpeedMultiplier;
+    public float FireRate;
+    public Transform FireLocation;
+    public GameObject Bullet;
 
     Rigidbody2D rb;
     float speed;
+    float nextShotTime;
 
     void Start()
     {
@@ -24,6 +28,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(InputManager.GetKey("Shoot") && Time.time > nextShotTime)
+        {
+            PoolManager.current.Activate(Bullet, FireLocation.position);
+            nextShotTime = Time.time + FireRate;
+        }
+
         if(InputManager.GetKeyDown("Focus"))
         {
             speed *= FocusSpeedMultiplier;
@@ -46,8 +56,8 @@ public class PlayerController : MonoBehaviour
         if(collision.CompareTag("Bullet"))
         {
             Health--;
-            Debug.Log("Player was Hit");
             if(Health <= 0) SceneManager.LoadScene("SampleScene");
+            PoolManager.current.Deactivate(collision.gameObject);
         }
     }
 }
