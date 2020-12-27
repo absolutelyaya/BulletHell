@@ -53,7 +53,7 @@ public class SpawningSystem : MonoBehaviour
                         break;
                 }
                 yayasGizmos.DrawArrow(item.Position, (Vector3)item.Position + Quaternion.AngleAxis(item.Rotation + 180, Vector3.forward)
-                    * transform.up * 2f, 15f, 0.5f);
+                    * transform.up * 2f);
                 Previewing = true;
             }
             if (item.hasErrors) Errors.Add(entry);
