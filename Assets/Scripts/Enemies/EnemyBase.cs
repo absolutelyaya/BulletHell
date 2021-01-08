@@ -16,6 +16,11 @@ public class EnemyBase : MonoBehaviour
     private Vector2 originPosition;
     private int health;
 
+    private void Start()
+    {
+        
+    }
+
     protected void OnEnable()
     {
         health = StartHealth;
@@ -95,6 +100,7 @@ public class EnemyBase : MonoBehaviour
 
     public virtual void Death()
     {
+        StopAllCoroutines();
         PoolManager.current.Deactivate(gameObject, false);
     }
 }

@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public GameObject Bullet;
 
     Rigidbody2D rb;
+    bool dead;
     float speed;
     float nextShotTime;
 
@@ -53,12 +54,25 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Bullet"))
+        if(collision.CompareTag("Bullet") && !dead)
         {
             Health--;
-            if(Health <= 0) SceneManager.LoadScene("SampleScene");
             PoolManager.current.Deactivate(collision.gameObject, true);
             EventSystem.HealthUpdate(Health);
+            if (Health <= 0) StartCoroutine(DeathSequence());
         }
+    }
+
+    private IEnumerator DeathSequence()
+    {
+        EventSystem.PlayerDeath();
+        BaseSpeed = 0;
+        speed = 0;
+        FocusSpeedMultiplier = 0;
+        dead = true;
+        Time.timeScale = 0.25f;
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("SampleScene");
+        Time.timeScale = 1f;
     }
 }

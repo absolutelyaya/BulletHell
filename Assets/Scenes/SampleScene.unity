@@ -1034,6 +1034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Glitch: {fileID: 2100000, guid: 475ba6d4718d9c64298018dfb1f97411, type: 2}
+  Screen: {fileID: 2100000, guid: 3242d56c2bd124c4eb16f7c2ed0a7c13, type: 2}
 --- !u!1 &606194927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,6 +1181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 1906976738}
   DamagePopup: {fileID: 1784193872}
+  DeathPopup: {fileID: 21300000, guid: 7554c5643075e7d40ac32946b13768c4, type: 3}
 --- !u!1 &947040872
 GameObject:
   m_ObjectHideFlags: 0

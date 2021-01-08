@@ -5,15 +5,16 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
-
     public Slider HealthBar;
     public Image DamagePopup;
+    public Sprite DeathPopup;
 
     Coroutine damagePopUpCoroutine;
 
     private void Start()
     {
         EventSystem.onHealthUpdate += HealthUpdate;
+        EventSystem.onPlayerDeath += PlayerDeath;
     }
 
     void HealthUpdate(int health)
@@ -54,6 +55,11 @@ public class HUD : MonoBehaviour
         }
         DamagePopup.color = new Color(1, 1, 1, 0);
         damagePopUpCoroutine = null;
+    }
+
+    private void PlayerDeath()
+    {
+        DamagePopup.sprite = DeathPopup;
     }
 
     private void OnDestroy()
