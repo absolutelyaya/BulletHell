@@ -106,22 +106,24 @@ public class Pool : MonoBehaviour
         return target;
     }
 
-    public async Task<Task> Deactivate(GameObject target, bool affectChildren)
+    public void Deactivate(GameObject target, bool affectChildren)
     {
         if (!entries.Contains(target)) entries.Add(target);
-        if(affectChildren && target.transform.childCount > 0)
+        if(target.GetComponent<Bullets.BulletBase>()) //Weird fix, I know. Couldn't figure out the actual issue yet.
         {
-            while (target.transform.childCount > 0)
+            if (affectChildren && target.transform.childCount > 0)
             {
-                var child = target.transform.GetChild(0);
-                await PoolManager.current.DeactivateAsync(child.gameObject, false);
+                while (target.transform.childCount > 0)
+                {
+                    var child = target.transform.GetChild(0);
+                    PoolManager.current.Deactivate(child.gameObject, false);
+                }
             }
         }
         target.transform.SetParent(transform);
         target.transform.position = transform.position;
         target.transform.rotation = Quaternion.identity;
         target.SetActive(false);
-        return Task.CompletedTask;
     }
 }
 

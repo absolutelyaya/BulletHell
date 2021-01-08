@@ -23,11 +23,6 @@ public class EnemyBase : MonoBehaviour
         if(Path) StartCoroutine(FollowPath());
     }
 
-    private void Update()
-    {
-        if (health <= 0) Death();
-    }
-
     protected void OnBecameVisible()
     {
         StartCoroutine(Pattern());
@@ -94,6 +89,7 @@ public class EnemyBase : MonoBehaviour
         {
             health--;
             PoolManager.current.Deactivate(collision.gameObject, false);
+            if (health <= 0) Death();
         }
     }
 

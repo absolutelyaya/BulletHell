@@ -57,13 +57,7 @@ public class PoolManager : MonoBehaviour
 
     public void Deactivate(GameObject target, bool affectChildren)
     {
-        #pragma warning disable CS4014
         GetPool(target).Deactivate(target, affectChildren);
-    }
-
-    public async Task DeactivateAsync(GameObject target, bool affectChildren)
-    {
-        await GetPool(target).Deactivate(target, affectChildren);
     }
 }
 
