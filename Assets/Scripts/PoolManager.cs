@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -54,9 +55,15 @@ public class PoolManager : MonoBehaviour
         return GetPool(target).Activate(parent, position, rotation);
     }
 
-    public void Deactivate(GameObject target)
+    public void Deactivate(GameObject target, bool affectChildren)
     {
-        GetPool(target).Deactivate(target);
+        #pragma warning disable CS4014
+        GetPool(target).Deactivate(target, affectChildren);
+    }
+
+    public async Task DeactivateAsync(GameObject target, bool affectChildren)
+    {
+        await GetPool(target).Deactivate(target, affectChildren);
     }
 }
 

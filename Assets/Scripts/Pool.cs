@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Threading.Tasks;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -104,13 +106,22 @@ public class Pool : MonoBehaviour
         return target;
     }
 
-    public void Deactivate(GameObject target)
+    public async Task<Task> Deactivate(GameObject target, bool affectChildren)
     {
         if (!entries.Contains(target)) entries.Add(target);
-        target.transform.parent = transform;
+        if(affectChildren && target.transform.childCount > 0)
+        {
+            while (target.transform.childCount > 0)
+            {
+                var child = target.transform.GetChild(0);
+                await PoolManager.current.DeactivateAsync(child.gameObject, false);
+            }
+        }
+        target.transform.SetParent(transform);
         target.transform.position = transform.position;
         target.transform.rotation = Quaternion.identity;
         target.SetActive(false);
+        return Task.CompletedTask;
     }
 }
 

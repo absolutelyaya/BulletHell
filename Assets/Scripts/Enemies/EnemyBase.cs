@@ -35,7 +35,7 @@ public class EnemyBase : MonoBehaviour
 
     protected void OnBecameInvisible()
     {
-        PoolManager.current.Deactivate(gameObject);
+        PoolManager.current.Deactivate(gameObject, false);
     }
 
     IEnumerator FollowPath()
@@ -93,12 +93,12 @@ public class EnemyBase : MonoBehaviour
         if(collision.CompareTag("PlayerBullet"))
         {
             health--;
-            PoolManager.current.Deactivate(collision.gameObject);
+            PoolManager.current.Deactivate(collision.gameObject, false);
         }
     }
 
     public virtual void Death()
     {
-        PoolManager.current.Deactivate(gameObject);
+        PoolManager.current.Deactivate(gameObject, false);
     }
 }

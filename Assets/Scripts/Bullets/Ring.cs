@@ -26,14 +26,6 @@ namespace Bullets
             Invoke("SpawnElements", 0.1f);
         }
 
-        private void OnDisable()
-        {
-            foreach (Transform child in transform)
-            {
-                if (child.GetComponent<BulletBase>()) PoolManager.current.Deactivate(child.gameObject);
-            }
-        }
-
         public void SpawnElements()
         {
             Color color = Color.clear;
@@ -62,7 +54,7 @@ namespace Bullets
             }
             if (CurrentElements.Count > 0) for (int i = 0; i < CurrentElements.Count; i++)
                 {
-                    PoolManager.current.Deactivate(CurrentElements[i]);
+                    PoolManager.current.Deactivate(CurrentElements[i], true);
                 }
             CurrentElements = new List<GameObject>();
         }
@@ -91,7 +83,7 @@ namespace Bullets
                     item.GetComponent<Rigidbody2D>().simulated = true;
                     item.transform.parent = PoolManager.current.GetPool(item).transform;
                 }
-                else PoolManager.current.Deactivate(item);
+                else PoolManager.current.Deactivate(item, true);
             }
             base.Death();
         }

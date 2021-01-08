@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Bullets
 {
@@ -34,12 +35,7 @@ namespace Bullets
 
         public virtual void Death()
         {
-            PoolManager.current.Deactivate(gameObject);
-        }
-
-        private void OnBecameInvisible()
-        {
-            PoolManager.current.Deactivate(gameObject);
+            PoolManager.current.Deactivate(gameObject, true);
         }
 
         private void FixedUpdate()
@@ -54,7 +50,7 @@ namespace Bullets
 
         public void Reflect()
         {
-            if (bounces < 0) PoolManager.current.Deactivate(gameObject);
+            if (bounces < 0) PoolManager.current.Deactivate(gameObject, true);
             transform.rotation = Quaternion.Inverse(transform.rotation);
             bounces--;
         }
