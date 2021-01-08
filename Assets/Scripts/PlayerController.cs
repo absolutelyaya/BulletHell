@@ -57,7 +57,8 @@ public class PlayerController : MonoBehaviour
         {
             Health--;
             if(Health <= 0) SceneManager.LoadScene("SampleScene");
-            PoolManager.current.Deactivate(collision.gameObject);
+            PoolManager.current.Deactivate(collision.gameObject, true);
+            EventSystem.HealthUpdate(Health);
         }
     }
 }

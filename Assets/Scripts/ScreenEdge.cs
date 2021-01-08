@@ -13,7 +13,7 @@ public class ScreenEdge : MonoBehaviour
                 collision.TryGetComponent(out EnemyBase enemy);
                 if (enemy)
                 {
-                    if (enemy.DespawnOffscreen) PoolManager.current.Deactivate(collision.gameObject);
+                    if (enemy.DespawnOffscreen) PoolManager.current.Deactivate(collision.gameObject, true);
                     else enemy.IsOffScreen = true;
                 }
                 else throw new MissingComponentException($"{collision.name} has the Enemy tag, but no script inheriting from 'EnemyBase'");
@@ -26,7 +26,7 @@ public class ScreenEdge : MonoBehaviour
                     switch(bullet.OffScreenBehaviour)
                     {
                         case OffScreenBehaviour.Despawn:
-                            PoolManager.current.Deactivate(collision.gameObject);
+                            PoolManager.current.Deactivate(collision.gameObject, false);
                             break;
                         case OffScreenBehaviour.Reflect:
                             bullet.Reflect();
