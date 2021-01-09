@@ -1,4 +1,4 @@
-﻿Shader "Custom/ScreenLinesShader"
+﻿Shader "Custom/ScanlineShader"
 {
     Properties
     {
@@ -41,13 +41,14 @@
             }
 
             sampler2D _MainTex;
+            float _ScanlineMultiplier;
 
             fixed4 frag (v2f i) : SV_Target
             {
                 float4 col = tex2D(_MainTex, i.uv);
                 float2 ps = i.scr_pos.xy * _ScreenParams.xy / i.scr_pos.w;
                 uint scanline = (uint)ps.y % 2;
-                if (scanline == 0) col *= 0.5;
+                if (scanline == 0) col *= _ScanlineMultiplier;
                 return col;
             }
             ENDCG
