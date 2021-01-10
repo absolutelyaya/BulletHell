@@ -18,7 +18,7 @@ public class ScreenEdge : MonoBehaviour
                 }
                 else throw new MissingComponentException($"{collision.name} has the Enemy tag, but no script inheriting from 'EnemyBase'");
                 break;
-            case "Bullet":
+            case "Bullet": case "PlayerBullet":
                 collision.TryGetComponent(out BulletBase bullet);
                 if (bullet)
                 {
