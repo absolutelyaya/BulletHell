@@ -15,10 +15,11 @@ public class EnemyBase : MonoBehaviour
 
     private Vector2 originPosition;
     private int health;
+    private SpriteRenderer sprite;
 
     private void Start()
     {
-        
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     protected void OnEnable()
@@ -94,7 +95,19 @@ public class EnemyBase : MonoBehaviour
         {
             health--;
             PoolManager.current.Deactivate(collision.gameObject, false);
+            StartCoroutine(DamageSequence());
             if (health <= 0) Death();
+        }
+    }
+
+    private IEnumerator DamageSequence()
+    {
+        float time = 0;
+        while(time < 1)
+        {
+            yield return new WaitForEndOfFrame();
+            sprite.color = Color.Lerp(Color.red, Color.white, time);
+            time += Time.deltaTime * 4;
         }
     }
 
