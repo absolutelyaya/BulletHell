@@ -8,6 +8,7 @@ public class HUD : MonoBehaviour
     public Slider HealthBar;
     public Image DamagePopup;
     public Sprite DeathPopup;
+    public Camera GameOverCamera;
 
     Coroutine damagePopUpCoroutine;
 
@@ -60,10 +61,18 @@ public class HUD : MonoBehaviour
     private void PlayerDeath()
     {
         DamagePopup.sprite = DeathPopup;
+        StartCoroutine(DeathSequence());
+    }
+
+    private IEnumerator DeathSequence()
+    {
+        yield return new WaitForSeconds(1);
+        GameOverCamera.gameObject.SetActive(true);
     }
 
     private void OnDestroy()
     {
         EventSystem.onHealthUpdate -= HealthUpdate;
+        EventSystem.onPlayerDeath -= PlayerDeath;
     }
 }
