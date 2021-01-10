@@ -151,6 +151,8 @@ public class SpawnEntry
         Bounces = bounces;
     }
 
+    public float SpawnTime;
+    public bool Expanded;
     public EntryType Type;
     public bool Previewing;
     public GameObject Entity;
@@ -214,5 +216,14 @@ public class SpawningSystemInspector : Editor
         {
             script.Level.Add(new SpawnEntry());
         }
+
+        for (int i = 0; i < script.Level.Count; i++)
+        {
+            if(i != 0)
+            {
+                script.Level[i].SpawnTime = script.Level[i - 1].SpawnTime + script.Level[i].Delay;
+            }
+        }
+
     }
 }
