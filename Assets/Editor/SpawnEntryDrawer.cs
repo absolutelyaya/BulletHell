@@ -11,7 +11,13 @@ public class SpawnEntryDrawer : PropertyDrawer
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
         int height = 120;
-        if (!property.FindPropertyRelative("Expanded").boolValue) return 25;
+        if (!property.FindPropertyRelative("Expanded").boolValue)
+        {
+            height = 25;
+            if (property.FindPropertyRelative("hasErrors").boolValue) height += 36;
+            if (property.FindPropertyRelative("hasWarnings").boolValue) height += 36;
+            return height;
+        }
         if(property.FindPropertyRelative("SpecificsExpanded").boolValue)
         {
             if (property.FindPropertyRelative("Type").enumValueIndex == 0)
@@ -60,12 +66,15 @@ public class SpawnEntryDrawer : PropertyDrawer
         SerializedProperty specificsExpanded = property.FindPropertyRelative("SpecificsExpanded");
         SerializedProperty Expanded = property.FindPropertyRelative("Expanded");
 
+        EditorStyles.label.richText = true;
+
         GUIStyle labelStyle = new GUIStyle(GUI.skin.label)
         {
             alignment = TextAnchor.MiddleCenter,
             margin = new RectOffset(),
             padding = new RectOffset(),
-            fontStyle = FontStyle.Bold
+            fontStyle = FontStyle.Bold,
+            richText = true
         };
         labelStyle.normal.textColor = Color.white;
 
@@ -74,7 +83,8 @@ public class SpawnEntryDrawer : PropertyDrawer
             alignment = TextAnchor.MiddleCenter,
             margin = new RectOffset(),
             padding = new RectOffset(),
-            fontStyle = FontStyle.Normal
+            fontStyle = FontStyle.Normal,
+            richText = true
         };
         smallLabelStyle.normal.textColor = Color.white;
 
@@ -87,21 +97,25 @@ public class SpawnEntryDrawer : PropertyDrawer
         var bgRect = new Rect(position.x - 4, position.y, position.width + 8, position.height);
         position.y += 4;
         obj = (GameObject)property.FindPropertyRelative("Entity").objectReferenceValue;
-        if (type == 0)
+        if (obj)
         {
-            if (property.FindPropertyRelative("Path").objectReferenceValue == null) error = "This Enemy doesn't have a Path!";
-            if (!obj.GetComponent<EnemyBase>()) error = "Entity isn't an Enemy!";
-            if (property.FindPropertyRelative("SpeedConst").floatValue == 0) warning = "Speed is 0!";
+            if (type == 0)
+            {
+                if (property.FindPropertyRelative("Path").objectReferenceValue == null) error = "This Enemy doesn't have a Path!";
+                if (!obj.GetComponent<EnemyBase>()) error = "Entity isn't an Enemy!";
+                if (property.FindPropertyRelative("SpeedConst").floatValue == 0) warning = "Speed is 0!";
+            }
+            if (property.FindPropertyRelative("Entity").objectReferenceValue == null) error = "You have to declare an entity to spawn!";
+            if (type == 1)
+            {
+                if (!obj.GetComponent<BulletBase>()) error = "Entity isn't a Bullet!";
+                if (property.FindPropertyRelative("RingBullets").objectReferenceValue == null &&
+                    obj.GetComponent<BulletBase>().Type == BulletType.Ring) error = "This Ring doesn't have assigned Child Bullets!";
+                Vector2 speedRange = property.FindPropertyRelative("SpeedRange").vector2Value;
+                if (speedRange.x == 0 || speedRange.y == 0) warning = "Speed can be 0!";
+            }
         }
-        if (property.FindPropertyRelative("Entity").objectReferenceValue == null) error = "You have to declare an entity to spawn!";
-        if (type == 1)
-        {
-            if (!obj.GetComponent<BulletBase>()) error = "Entity isn't a Bullet!";
-            if (property.FindPropertyRelative("RingBullets").objectReferenceValue == null &&
-                obj.GetComponent<BulletBase>().Type == BulletType.Ring) error = "This Ring doesn't have assigned Child Bullets!";
-            Vector2 speedRange = property.FindPropertyRelative("SpeedRange").vector2Value;
-            if (speedRange.x == 0 || speedRange.y == 0) warning = "Speed can be 0!";
-        }
+        else error = "No Entity Selected!";
 
         var headerRect = new Rect(position.x + 13, position.y, position.width - 13, 18);
         var infoDropdownRect = new Rect(position.x, position.y, 25, 18);
@@ -126,8 +140,12 @@ public class SpawnEntryDrawer : PropertyDrawer
         else EditorGUI.DrawRect(bgRect, BGColorInactive);
         if (selected) EditorGUI.DrawRect(headerRect, LabelColorActive);
         else EditorGUI.DrawRect(headerRect, LabelColorInactive);
-        EditorGUI.LabelField(headerRect, $"{property.FindPropertyRelative("Entity").objectReferenceValue.name} - Spawntime: " +
-            $"{property.FindPropertyRelative("SpawnTime").floatValue}s", labelStyle);
+        if(obj)
+            EditorGUI.LabelField(headerRect, $"{property.FindPropertyRelative("Entity").objectReferenceValue.name} - Spawntime: " +
+                $"{property.FindPropertyRelative("SpawnTime").floatValue}s", labelStyle);
+        else
+            EditorGUI.LabelField(headerRect, $"<color=red>No Entity</color> - Spawntime: " +
+                $"{property.FindPropertyRelative("SpawnTime").floatValue}s", labelStyle);
         if (GUI.Button(infoDropdownRect, new GUIContent(Expanded.boolValue ? "▲" : "▼")))
             Expanded.boolValue = !Expanded.boolValue;
         if (warning != string.Empty)
@@ -174,10 +192,10 @@ public class SpawnEntryDrawer : PropertyDrawer
                     else EditorGUI.DrawRect(specificsBGRect, LabelColorInactive);
                     EditorGUIUtility.labelWidth = 35.0f;
                     var pathRect = new Rect(position.x, position.y, position.width - 43, 18);
-                    EditorGUI.PropertyField(pathRect, property.FindPropertyRelative("Path"), new GUIContent("Path"));
+                    EditorGUI.PropertyField(pathRect, property.FindPropertyRelative("Path"), new GUIContent("<color=white>" + "Path" + "</color>"));
                     EditorGUIUtility.labelWidth = 25.0f;
                     var flipPathRect = new Rect(position.x + position.width - 43, position.y, position.width - 43, 18);
-                    EditorGUI.PropertyField(flipPathRect, property.FindPropertyRelative("FlipPath"), new GUIContent("Flip"));
+                    EditorGUI.PropertyField(flipPathRect, property.FindPropertyRelative("FlipPath"), new GUIContent("<color=white>" + "Flip" + "</color>"));
                 }
             }
             if (type == 1) //Bullet Specific
@@ -195,9 +213,9 @@ public class SpawnEntryDrawer : PropertyDrawer
                     if (property.FindPropertyRelative("OffScrBhv").enumValueIndex == 1) offscrBhvRect.width -= 35;
                     var bouncesRect = new Rect(position.x + position.width - 35, position.y, 35, 18);
                     EditorGUIUtility.labelWidth = 10.0f;
-                    EditorGUI.PropertyField(bouncesRect, property.FindPropertyRelative("Bounces"), new GUIContent("X"));
+                    EditorGUI.PropertyField(bouncesRect, property.FindPropertyRelative("Bounces"), new GUIContent("<color=white>" + "X" + "</color>"));
                     EditorGUIUtility.labelWidth = 60.0f;
-                    EditorGUI.PropertyField(offscrBhvRect, property.FindPropertyRelative("OffScrBhv"), new GUIContent("OffscrBhv", "Offscreen Behaviour"));
+                    EditorGUI.PropertyField(offscrBhvRect, property.FindPropertyRelative("OffScrBhv"), new GUIContent("<color=white>" + "OffscrBhv" + "</color>", "Offscreen Behaviour"));
 
                     obj = (GameObject)property.FindPropertyRelative("Entity").objectReferenceValue;
                     obj.TryGetComponent(out BulletBase bullet);
@@ -218,13 +236,13 @@ public class SpawnEntryDrawer : PropertyDrawer
                                 var bulletRect = new Rect(position.x, position.y, position.width - 35, 18);
                                 var elementsRect = new Rect(position.x + position.width - 35, position.y, 35, 18);
                                 EditorGUIUtility.labelWidth = 10.0f;
-                                EditorGUI.PropertyField(elementsRect, property.FindPropertyRelative("RingElements"), new GUIContent("X"));
+                                EditorGUI.PropertyField(elementsRect, property.FindPropertyRelative("RingElements"), new GUIContent("<color=white>" + "X" + "</color>"));
                                 EditorGUIUtility.labelWidth = 40.0f;
-                                EditorGUI.PropertyField(bulletRect, property.FindPropertyRelative("RingBullets"), new GUIContent("Bullets"));
+                                EditorGUI.PropertyField(bulletRect, property.FindPropertyRelative("RingBullets"), new GUIContent("<color=white>" + "Bullets" + "</color>"));
                                 position.y += 18;
                                 var baseDistanceRect = new Rect(position.x, position.y, position.width, 18);
                                 EditorGUIUtility.labelWidth = 85.0f;
-                                EditorGUI.PropertyField(baseDistanceRect, property.FindPropertyRelative("RingDistance"), new GUIContent("Base Distance"));
+                                EditorGUI.PropertyField(baseDistanceRect, property.FindPropertyRelative("RingDistance"), new GUIContent("<color=white>" + "Base Distance" + "</color>"));
                                 break;
                         }
                 }

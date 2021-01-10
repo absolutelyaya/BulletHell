@@ -216,6 +216,10 @@ public class SpawningSystemInspector : Editor
         {
             script.Level.Add(new SpawnEntry());
         }
+        if (GUILayout.Button("Remove Entry"))
+        {
+            script.Level.RemoveAt(script.Level.Count - 1);
+        }
 
         for (int i = 0; i < script.Level.Count; i++)
         {
