@@ -151,6 +151,9 @@ public class SpawnEntry
         Bounces = bounces;
     }
 
+    //ListControl
+    public Actions PendingAction;
+
     public float SpawnTime;
     public bool Expanded;
     public EntryType Type;
@@ -180,6 +183,14 @@ public class SpawnEntry
     {
         Enemy,
         Bullet
+    }
+
+    public enum Actions
+    {
+        None,
+        MoveUp,
+        MoveDown,
+        Delete
     }
 }
 
@@ -223,11 +234,40 @@ public class SpawningSystemInspector : Editor
 
         for (int i = 0; i < script.Level.Count; i++)
         {
-            if(i != 0)
+            if (i != 0)
             {
                 script.Level[i].SpawnTime = script.Level[i - 1].SpawnTime + script.Level[i].Delay;
             }
+            else script.Level[i].SpawnTime = 0;
+            switch(script.Level[i].PendingAction)
+            {
+                case SpawnEntry.Actions.MoveUp:
+                    if (i != 0)
+                    {
+                        Debug.Log(i - 1);
+                        SpawnEntry tmp = script.Level[i];
+                        script.Level[i] = script.Level[i - 1];
+                        script.Level[i - 1] = tmp;
+                        script.Level[i - 1].PendingAction = SpawnEntry.Actions.None;
+                        return;
+                    }
+                    break;
+                case SpawnEntry.Actions.MoveDown:
+                    if (i != script.Level.Count - 1)
+                    {
+                        Debug.Log(i + 1);
+                        SpawnEntry tmp = script.Level[i];
+                        script.Level[i] = script.Level[i + 1];
+                        script.Level[i + 1] = tmp;
+                        script.Level[i + 1].PendingAction = SpawnEntry.Actions.None;
+                        return;
+                    }
+                    break;
+                case SpawnEntry.Actions.Delete:
+                    script.Level.RemoveAt(i);
+                    script.Level[i].PendingAction = SpawnEntry.Actions.None;
+                    break;
+            }
         }
-
     }
 }

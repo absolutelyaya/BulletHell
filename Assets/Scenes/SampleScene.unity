@@ -121,6 +121,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &140275781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 140275782}
+  m_Layer: 0
+  m_Name: Ring
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &140275782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140275781}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &151859932
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,11 +393,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98558749a3cb7ca4ab6aaf0caa7f66b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Previewing: 0
+  Previewing: 1
   Errors: 
   Warnings: 
   Level:
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 0
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
@@ -387,7 +420,10 @@ MonoBehaviour:
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 0.1
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
@@ -407,7 +443,10 @@ MonoBehaviour:
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 0.2
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
@@ -421,13 +460,16 @@ MonoBehaviour:
     SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
-    RingElements: 7
+    RingElements: 5
     RingDistance: 0
     RingBullets: {fileID: 8868261923147093872, guid: 647cb031577687d43a132bc0f7d932fb,
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 0.3
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
@@ -441,13 +483,16 @@ MonoBehaviour:
     SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
-    RingElements: 8
+    RingElements: 6
     RingDistance: 0
     RingBullets: {fileID: 8868261923147093872, guid: 647cb031577687d43a132bc0f7d932fb,
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 0.4
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
@@ -467,52 +512,38 @@ MonoBehaviour:
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 0.5
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
     Delay: 0.1
     Position: {x: 5, y: 12}
     Rotation: 0
-    SpecificsExpanded: 1
+    SpecificsExpanded: 0
     SpeedConst: 0
     Path: {fileID: 0}
     FlipPath: 0
     SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
-    RingElements: 9
+    RingElements: 6
     RingDistance: 0
     RingBullets: {fileID: 8868261923147093872, guid: 647cb031577687d43a132bc0f7d932fb,
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 0.6
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
     Delay: 0.1
     Position: {x: 6, y: 12}
-    Rotation: 0
-    SpecificsExpanded: 1
-    SpeedConst: 0
-    Path: {fileID: 0}
-    FlipPath: 0
-    SpeedRange: {x: 1.5, y: 3}
-    OffScrBhv: 0
-    Bounces: 0
-    RingElements: 10
-    RingDistance: 0
-    RingBullets: {fileID: 8868261923147093872, guid: 647cb031577687d43a132bc0f7d932fb,
-      type: 3}
-    hasErrors: 0
-    hasWarnings: 0
-  - Type: 1
-    Previewing: 0
-    Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
-      type: 3}
-    Delay: 1
-    Position: {x: 0, y: 12}
     Rotation: 0
     SpecificsExpanded: 0
     SpeedConst: 0
@@ -527,7 +558,33 @@ MonoBehaviour:
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 1.6
+    Expanded: 0
+    Type: 1
+    Previewing: 0
+    Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
+      type: 3}
+    Delay: 1
+    Position: {x: 0, y: 12}
+    Rotation: 0
+    SpecificsExpanded: 0
+    SpeedConst: 0
+    Path: {fileID: 0}
+    FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
+    OffScrBhv: 0
+    Bounces: 0
+    RingElements: 6
+    RingDistance: 0
+    RingBullets: {fileID: 8868261923147093872, guid: 647cb031577687d43a132bc0f7d932fb,
+      type: 3}
+    hasErrors: 0
+    hasWarnings: 0
+  - PendingAction: 0
+    SpawnTime: 1.7
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
@@ -547,7 +604,10 @@ MonoBehaviour:
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 1.8000001
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
@@ -561,13 +621,16 @@ MonoBehaviour:
     SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
-    RingElements: 5
+    RingElements: 6
     RingDistance: 0
     RingBullets: {fileID: 8868261923147093872, guid: 647cb031577687d43a132bc0f7d932fb,
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 1.9000001
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
@@ -581,13 +644,16 @@ MonoBehaviour:
     SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
     Bounces: 0
-    RingElements: 5
+    RingElements: 7
     RingDistance: 0
     RingBullets: {fileID: 8868261923147093872, guid: 647cb031577687d43a132bc0f7d932fb,
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 2
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
@@ -607,7 +673,10 @@ MonoBehaviour:
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 2.1
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
@@ -627,7 +696,10 @@ MonoBehaviour:
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 2.1999998
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
@@ -647,7 +719,10 @@ MonoBehaviour:
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 7.2
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
@@ -667,7 +742,10 @@ MonoBehaviour:
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 8.2
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
@@ -687,7 +765,10 @@ MonoBehaviour:
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 8.2
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
@@ -707,7 +788,10 @@ MonoBehaviour:
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 9.2
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
@@ -727,7 +811,10 @@ MonoBehaviour:
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 9.2
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
@@ -747,27 +834,10 @@ MonoBehaviour:
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 1
-    Previewing: 0
-    Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
-      type: 3}
-    Delay: 1
-    Position: {x: 3, y: 12}
-    Rotation: 0
-    SpecificsExpanded: 0
-    SpeedConst: 0
-    Path: {fileID: 0}
-    FlipPath: 0
-    SpeedRange: {x: 1.5, y: 3}
-    OffScrBhv: 0
-    Bounces: 0
-    RingElements: 5
-    RingDistance: 0
-    RingBullets: {fileID: 8868261923147093872, guid: 647cb031577687d43a132bc0f7d932fb,
-      type: 3}
-    hasErrors: 0
-    hasWarnings: 0
-  - Type: 1
+  - PendingAction: 0
+    SpawnTime: 9.2
+    Expanded: 0
+    Type: 1
     Previewing: 0
     Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
       type: 3}
@@ -787,7 +857,33 @@ MonoBehaviour:
       type: 3}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 0
+  - PendingAction: 0
+    SpawnTime: 10.2
+    Expanded: 0
+    Type: 1
+    Previewing: 0
+    Entity: {fileID: 8701212736181399359, guid: 58db63b7b6ae02e4785d68c1e67aee2b,
+      type: 3}
+    Delay: 1
+    Position: {x: 3, y: 12}
+    Rotation: 0
+    SpecificsExpanded: 0
+    SpeedConst: 0
+    Path: {fileID: 0}
+    FlipPath: 0
+    SpeedRange: {x: 1.5, y: 3}
+    OffScrBhv: 0
+    Bounces: 0
+    RingElements: 5
+    RingDistance: 0
+    RingBullets: {fileID: 8868261923147093872, guid: 647cb031577687d43a132bc0f7d932fb,
+      type: 3}
+    hasErrors: 0
+    hasWarnings: 0
+  - PendingAction: 0
+    SpawnTime: 12.2
+    Expanded: 0
+    Type: 0
     Previewing: 0
     Entity: {fileID: 6844484021280618970, guid: a2a4f7aabb0bcc443a578ad84cd3d0c5,
       type: 3}
@@ -806,7 +902,10 @@ MonoBehaviour:
     RingBullets: {fileID: 0}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 0
+  - PendingAction: 0
+    SpawnTime: 14.2
+    Expanded: 0
+    Type: 0
     Previewing: 0
     Entity: {fileID: 6844484021280618970, guid: a2a4f7aabb0bcc443a578ad84cd3d0c5,
       type: 3}
@@ -825,7 +924,10 @@ MonoBehaviour:
     RingBullets: {fileID: 0}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 0
+  - PendingAction: 0
+    SpawnTime: 16.2
+    Expanded: 0
+    Type: 0
     Previewing: 0
     Entity: {fileID: 6844484021280618970, guid: a2a4f7aabb0bcc443a578ad84cd3d0c5,
       type: 3}
@@ -844,7 +946,10 @@ MonoBehaviour:
     RingBullets: {fileID: 0}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 0
+  - PendingAction: 0
+    SpawnTime: 18.2
+    Expanded: 0
+    Type: 0
     Previewing: 0
     Entity: {fileID: 6844484021280618970, guid: a2a4f7aabb0bcc443a578ad84cd3d0c5,
       type: 3}
@@ -863,7 +968,10 @@ MonoBehaviour:
     RingBullets: {fileID: 0}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 0
+  - PendingAction: 0
+    SpawnTime: 23.2
+    Expanded: 0
+    Type: 0
     Previewing: 0
     Entity: {fileID: 6844484021234683997}
     Delay: 5
@@ -881,7 +989,52 @@ MonoBehaviour:
     RingBullets: {fileID: 0}
     hasErrors: 0
     hasWarnings: 0
-  - Type: 0
+  - PendingAction: 0
+    SpawnTime: 25.2
+    Expanded: 0
+    Type: 0
+    Previewing: 0
+    Entity: {fileID: 6844484021234683997}
+    Delay: 2
+    Position: {x: 5, y: 12}
+    Rotation: 0
+    SpecificsExpanded: 1
+    SpeedConst: 3
+    Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
+    FlipPath: 1
+    SpeedRange: {x: 0, y: 0}
+    OffScrBhv: 0
+    Bounces: 0
+    RingElements: 0
+    RingDistance: 0
+    RingBullets: {fileID: 0}
+    hasErrors: 0
+    hasWarnings: 0
+  - PendingAction: 0
+    SpawnTime: 27.2
+    Expanded: 0
+    Type: 0
+    Previewing: 1
+    Entity: {fileID: 6844484021234683997}
+    Delay: 2
+    Position: {x: 5, y: 12}
+    Rotation: 0
+    SpecificsExpanded: 0
+    SpeedConst: 3
+    Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
+    FlipPath: 1
+    SpeedRange: {x: 0, y: 0}
+    OffScrBhv: 0
+    Bounces: 0
+    RingElements: 0
+    RingDistance: 0
+    RingBullets: {fileID: 0}
+    hasErrors: 0
+    hasWarnings: 0
+  - PendingAction: 0
+    SpawnTime: 29.2
+    Expanded: 0
+    Type: 0
     Previewing: 0
     Entity: {fileID: 6844484021234683997}
     Delay: 2
@@ -1060,7 +1213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606194927}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.75, z: 0}
+  m_LocalPosition: {x: -0.0325, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1058485172}
@@ -1766,7 +1919,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0325, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1777,7 +1930,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.935, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &1602223356
 GameObject:

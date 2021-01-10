@@ -64,7 +64,8 @@ public class SpawnEntryDrawer : PropertyDrawer
         int type = property.FindPropertyRelative("Type").enumValueIndex;
         GameObject obj;
         SerializedProperty specificsExpanded = property.FindPropertyRelative("SpecificsExpanded");
-        SerializedProperty Expanded = property.FindPropertyRelative("Expanded");
+        SerializedProperty expanded = property.FindPropertyRelative("Expanded");
+        SerializedProperty pendingAction = property.FindPropertyRelative("PendingAction");
 
         EditorStyles.label.richText = true;
 
@@ -117,8 +118,11 @@ public class SpawnEntryDrawer : PropertyDrawer
         }
         else error = "No Entity Selected!";
 
-        var headerRect = new Rect(position.x + 13, position.y, position.width - 13, 18);
-        var infoDropdownRect = new Rect(position.x, position.y, 25, 18);
+        var headerRect = new Rect(position.x + 18, position.y, position.width - 72, 18);
+        var infoDropdownRect = new Rect(position.x, position.y, 18, 18);
+        var moveDownButton = new Rect(position.x + position.width - 54, position.y, 18, 18);
+        var moveUpButton = new Rect(position.x + position.width - 36, position.y, 18, 18);
+        var deleteButton = new Rect(position.x + position.width - 18, position.y, 18, 18);
         position.y += 18;
         var warnRect = new Rect(position.x, position.y, position.width, 32);
         if(error != string.Empty || warning != string.Empty) position.y += 36;
@@ -133,7 +137,7 @@ public class SpawnEntryDrawer : PropertyDrawer
         var speedRect = new Rect(position.x, position.y, position.width, 18);
         position.y += 18;
         var typeSpecificRect = new Rect(position.x, position.y, position.width, 18);
-        var typeSpecificDropdownRect = new Rect(position.x, position.y, 25, 18);
+        var typeSpecificDropdownRect = new Rect(position.x, position.y, 18, 18);
 
         //Header
         if (selected) EditorGUI.DrawRect(bgRect, BGColorActive);
@@ -141,13 +145,19 @@ public class SpawnEntryDrawer : PropertyDrawer
         if (selected) EditorGUI.DrawRect(headerRect, LabelColorActive);
         else EditorGUI.DrawRect(headerRect, LabelColorInactive);
         if(obj)
-            EditorGUI.LabelField(headerRect, $"{property.FindPropertyRelative("Entity").objectReferenceValue.name} - Spawntime: " +
+            EditorGUI.LabelField(headerRect, $"{property.FindPropertyRelative("Entity").objectReferenceValue.name} - " +
                 $"{property.FindPropertyRelative("SpawnTime").floatValue}s", labelStyle);
         else
             EditorGUI.LabelField(headerRect, $"<color=red>No Entity</color> - Spawntime: " +
                 $"{property.FindPropertyRelative("SpawnTime").floatValue}s", labelStyle);
-        if (GUI.Button(infoDropdownRect, new GUIContent(Expanded.boolValue ? "▲" : "▼")))
-            Expanded.boolValue = !Expanded.boolValue;
+        if (GUI.Button(infoDropdownRect, new GUIContent(expanded.boolValue ? "Λ" : "V"), EditorStyles.miniButtonRight))
+            expanded.boolValue = !expanded.boolValue;
+        if (GUI.Button(deleteButton, new GUIContent("X"), EditorStyles.miniButtonRight))
+            pendingAction.enumValueIndex = (int)SpawnEntry.Actions.Delete;
+        if (GUI.Button(moveUpButton, new GUIContent("\u2191"), EditorStyles.miniButtonMid))
+            pendingAction.enumValueIndex = (int)SpawnEntry.Actions.MoveUp;
+        if (GUI.Button(moveDownButton, new GUIContent("\u2193"), EditorStyles.miniButtonLeft))
+            pendingAction.enumValueIndex = (int)SpawnEntry.Actions.MoveDown;
         if (warning != string.Empty)
         {
             EditorGUI.DrawRect(warnRect, new Color(231 / 255f, 179 / 255f, 43 / 255f));
@@ -163,7 +173,7 @@ public class SpawnEntryDrawer : PropertyDrawer
         }
         else property.FindPropertyRelative("hasErrors").boolValue = false;
         //Drawing everything
-        if (Expanded.boolValue)
+        if (expanded.boolValue)
         {
             EditorGUIUtility.labelWidth = 65.0f;
             EditorGUI.PropertyField(typeRect, property.FindPropertyRelative("Type"), new GUIContent("Entry Type"));
@@ -177,7 +187,7 @@ public class SpawnEntryDrawer : PropertyDrawer
             var specificsHeaderRect = new Rect(position.x, position.y, position.width, 18);
             if (selected) EditorGUI.DrawRect(specificsHeaderRect, LabelColorActive);
             else EditorGUI.DrawRect(specificsHeaderRect, LabelColorInactive);
-            if (GUI.Button(typeSpecificDropdownRect, new GUIContent(specificsExpanded.boolValue ? "▲" : "▼")))
+            if (GUI.Button(typeSpecificDropdownRect, new GUIContent(specificsExpanded.boolValue ? "Λ" : "V"), EditorStyles.miniButtonRight))
                 specificsExpanded.boolValue = !specificsExpanded.boolValue;
 
             if (type == 0) //Enemy Specific
