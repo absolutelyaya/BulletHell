@@ -24,6 +24,7 @@ public class PostProcess : MonoBehaviour
 
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
+        renderTexture.filterMode = FilterMode.Point;
         Graphics.Blit(source, renderTexture, glitchInstance);
         Graphics.Blit(renderTexture, destination, screenInstance);
     }

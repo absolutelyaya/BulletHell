@@ -8,6 +8,7 @@ public class HUD : MonoBehaviour
     public Slider HealthBar;
     public Image DamagePopup;
     public Sprite DeathPopup;
+    public SpriteRenderer BlackoutSquare;
     public Camera GameOverCamera;
 
     Coroutine damagePopUpCoroutine;
@@ -68,6 +69,14 @@ public class HUD : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         GameOverCamera.gameObject.SetActive(true);
+        float time = 0;
+        yield return new WaitForSeconds(0.5f);
+        while(time < 1)
+        {
+            yield return new WaitForEndOfFrame();
+            BlackoutSquare.color = new Color(0, 0, 0, Mathf.Floor(time * 8) / 8);
+            time += Time.deltaTime * 2;
+        }
     }
 
     private void OnDestroy()

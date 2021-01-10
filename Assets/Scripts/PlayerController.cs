@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
         FocusSpeedMultiplier = 0;
         dead = true;
         Time.timeScale = 0.25f;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         SceneManager.LoadScene("SampleScene");
         Time.timeScale = 1f;
     }
