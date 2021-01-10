@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(InputManager.GetKey("Shoot") && Time.time > nextShotTime)
+        if(InputManager.GetKey("Shoot") && Time.time > nextShotTime && !dead)
         {
             PoolManager.current.Activate(Bullet, FireLocation.position);
             nextShotTime = Time.time + FireRate;
