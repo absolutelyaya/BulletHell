@@ -26,7 +26,7 @@
 
             float random(float2 uv)
             {
-                return frac(sin(dot(uv, float2(12.9898, 78.233))) * 43758.5453123);
+                return (frac(sin(dot(uv, float2(12.9898, 78.233))) * 43758.5453123) - 0.5f);
             }
 
             float4 frag(v2f_img i) : COLOR

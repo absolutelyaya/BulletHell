@@ -25,7 +25,7 @@ public class PostProcess : MonoBehaviour
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
         Graphics.Blit(source, renderTexture, glitchInstance);
-        Graphics.Blit(renderTexture, destination, Screen);
+        Graphics.Blit(renderTexture, destination, screenInstance);
     }
 
     void OnTakeDamage(int amount)
