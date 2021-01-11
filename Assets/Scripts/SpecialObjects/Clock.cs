@@ -20,20 +20,23 @@ public class Clock : MonoBehaviour
 
     void FixedUpdate()
     {
-        MinuteHand.transform.Rotate(new Vector3(0, 0, -1));
-        HourHand.transform.Rotate(new Vector3(0, 0, -0.08333333333f));
-
-        time = Mathf.Round(MinuteHand.transform.eulerAngles.z);
-
-        if (Mathf.Round(MinuteHand.transform.eulerAngles.z) == 0)
+        if(phase < 13)
         {
-            NextPhase();
+            MinuteHand.transform.Rotate(new Vector3(0, 0, -1));
+            HourHand.transform.Rotate(new Vector3(0, 0, -0.08333333333f));
+
+            time = Mathf.Round(MinuteHand.transform.eulerAngles.z);
+
+            if (Mathf.Round(MinuteHand.transform.eulerAngles.z) == 0)
+            {
+                NextPhase();
+            }
         }
     }
 
     void NextPhase()
     {
-        Debug.Log(HourNames[phase]);
+        EventSystem.ShowTitle(HourNames[phase], 0.1f, 1f);
         phase++;
     }
 }
