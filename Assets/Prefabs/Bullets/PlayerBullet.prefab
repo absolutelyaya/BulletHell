@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
-  Speed: 15
+  Speed: 30
   StartLiveTime: 0
   Moves: 1
   HasLiveTime: 0
