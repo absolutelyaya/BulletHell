@@ -118,6 +118,24 @@ public class SpawnEntry
     public SpawnEntry() {}
 
     /// <summary>
+    /// Copy
+    /// </summary>
+    public SpawnEntry(SpawnEntry original)
+    {
+        Type = original.Type;
+        Previewing = original.Previewing;
+        Entity = original.Entity;
+        Delay = original.Delay;
+        Position = original.Position;
+        Rotation = original.Rotation;
+        Path = original.Path;
+        FlipPath = original.FlipPath;
+        SpeedConst = original.SpeedConst;
+        OffScrBhv = original.OffScrBhv;
+        Bounces = original.Bounces;
+    }
+
+    /// <summary>
     /// Enemy
     /// </summary>
     public SpawnEntry(EntryType type, bool previewing, GameObject entity, float delay, Vector2 position, float rotation, float speed, PathScriptableObject path,
@@ -153,9 +171,8 @@ public class SpawnEntry
 
     //ListControl
     public Actions PendingAction;
-
     public float SpawnTime;
-    public bool Expanded;
+    public bool Expanded = true;
     public EntryType Type;
     public bool Previewing;
     public GameObject Entity;
@@ -190,7 +207,8 @@ public class SpawnEntry
         None,
         MoveUp,
         MoveDown,
-        Delete
+        Delete,
+        Clone
     }
 }
 
@@ -265,6 +283,10 @@ public class SpawningSystemInspector : Editor
                     break;
                 case SpawnEntry.Actions.Delete:
                     script.Level.RemoveAt(i);
+                    script.Level[i].PendingAction = SpawnEntry.Actions.None;
+                    break;
+                case SpawnEntry.Actions.Clone:
+                    script.Level.Insert(i + 1, new SpawnEntry(script.Level[i]));
                     script.Level[i].PendingAction = SpawnEntry.Actions.None;
                     break;
             }

@@ -118,11 +118,12 @@ public class SpawnEntryDrawer : PropertyDrawer
         }
         else error = "No Entity Selected!";
 
-        var headerRect = new Rect(position.x + 18, position.y, position.width - 72, 18);
+        var headerRect = new Rect(position.x + 18, position.y, position.width - 90, 18);
         var infoDropdownRect = new Rect(position.x, position.y, 18, 18);
-        var moveDownButton = new Rect(position.x + position.width - 54, position.y, 18, 18);
-        var moveUpButton = new Rect(position.x + position.width - 36, position.y, 18, 18);
-        var deleteButton = new Rect(position.x + position.width - 18, position.y, 18, 18);
+        var moveDownButton = new Rect(position.x + position.width - 72, position.y, 18, 18);
+        var moveUpButton = new Rect(position.x + position.width - 54, position.y, 18, 18);
+        var deleteButton = new Rect(position.x + position.width - 36, position.y, 18, 18);
+        var cloneButton = new Rect(position.x + position.width - 18, position.y, 18, 18);
         position.y += 18;
         var warnRect = new Rect(position.x, position.y, position.width, 32);
         if(error != string.Empty || warning != string.Empty) position.y += 36;
@@ -152,12 +153,16 @@ public class SpawnEntryDrawer : PropertyDrawer
                 $"{property.FindPropertyRelative("SpawnTime").floatValue}s", labelStyle);
         if (GUI.Button(infoDropdownRect, new GUIContent(expanded.boolValue ? "Λ" : "V"), EditorStyles.miniButtonRight))
             expanded.boolValue = !expanded.boolValue;
-        if (GUI.Button(deleteButton, new GUIContent("X"), EditorStyles.miniButtonRight))
+        //Drawing List utility Buttons
+        if (GUI.Button(cloneButton, new GUIContent("+"), EditorStyles.miniButtonRight))
+            pendingAction.enumValueIndex = (int)SpawnEntry.Actions.Clone;
+        if (GUI.Button(deleteButton, new GUIContent("X"), EditorStyles.miniButtonMid))
             pendingAction.enumValueIndex = (int)SpawnEntry.Actions.Delete;
         if (GUI.Button(moveUpButton, new GUIContent("\u2191"), EditorStyles.miniButtonMid))
             pendingAction.enumValueIndex = (int)SpawnEntry.Actions.MoveUp;
         if (GUI.Button(moveDownButton, new GUIContent("\u2193"), EditorStyles.miniButtonLeft))
             pendingAction.enumValueIndex = (int)SpawnEntry.Actions.MoveDown;
+        //Drawing errors and warnings
         if (warning != string.Empty)
         {
             EditorGUI.DrawRect(warnRect, new Color(231 / 255f, 179 / 255f, 43 / 255f));
@@ -172,7 +177,7 @@ public class SpawnEntryDrawer : PropertyDrawer
             property.FindPropertyRelative("hasErrors").boolValue = true;
         }
         else property.FindPropertyRelative("hasErrors").boolValue = false;
-        //Drawing everything
+        //Drawing everything else
         if (expanded.boolValue)
         {
             EditorGUIUtility.labelWidth = 65.0f;
@@ -187,7 +192,7 @@ public class SpawnEntryDrawer : PropertyDrawer
             var specificsHeaderRect = new Rect(position.x, position.y, position.width, 18);
             if (selected) EditorGUI.DrawRect(specificsHeaderRect, LabelColorActive);
             else EditorGUI.DrawRect(specificsHeaderRect, LabelColorInactive);
-            if (GUI.Button(typeSpecificDropdownRect, new GUIContent(specificsExpanded.boolValue ? "Λ" : "V"), EditorStyles.miniButtonRight))
+            if (GUI.Button(typeSpecificDropdownRect, new GUIContent(specificsExpanded.boolValue ? "Λ" : "V", "Expand Entry")))
                 specificsExpanded.boolValue = !specificsExpanded.boolValue;
 
             if (type == 0) //Enemy Specific
