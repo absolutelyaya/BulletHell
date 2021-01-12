@@ -24,9 +24,15 @@ public class EnemyBase : MonoBehaviour
 
     protected void OnEnable()
     {
+        StartCoroutine(Initiate());
+    }
+
+    IEnumerator Initiate()
+    {
+        yield return new WaitForEndOfFrame();
         health = StartHealth;
         originPosition = transform.position;
-        if(Path) StartCoroutine(FollowPath());
+        if (Path) StartCoroutine(FollowPath());
     }
 
     protected void OnBecameVisible()
@@ -41,15 +47,15 @@ public class EnemyBase : MonoBehaviour
 
     IEnumerator FollowPath()
     {
-        for (int i = 0; i < Path.Points.Count; i++)
+        Vector2[] points = Path.Path.CalculateEvenlySpacedPoints(0.5f);
+        for (int i = 0; i < points.Length; i++)
         {
-            Vector2 Goal = Vector2.Scale(Path.Points[i].Location, InvertPath ? new Vector2(-1, 1) : Vector2.one);
+            Vector2 Goal = Vector2.Scale(points[i], InvertPath ? new Vector2(-1, 1) : Vector2.one);
             while (Vector2.Distance(transform.position, Goal + originPosition) > 0.1f)
             {
                 yield return new WaitForFixedUpdate();
                 transform.Translate(((Goal + originPosition) - (Vector2)transform.position).normalized * Speed * Time.deltaTime);
             }
-            yield return new WaitForSeconds(Path.Points[i].Delay);
         }
     }
 
@@ -70,15 +76,16 @@ public class EnemyBase : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if(Path)
+        Vector2[] points = Path.Path.CalculateEvenlySpacedPoints(0.5f);
+        if (Path)
         {
-            for (int i = 1; i < Path.Points.Count; i++)
+            for (int i = 1; i < points.Length; i++)
             { 
                 Gizmos.DrawLine(
                     Application.isPlaying ? originPosition : (Vector2)transform.position +
-                    Vector2.Scale(Path.Points[i - 1].Location, InvertPath ? new Vector2(-1, 1) : Vector2.one),
+                    Vector2.Scale(points[i - 1], InvertPath ? new Vector2(-1, 1) : Vector2.one),
                     Application.isPlaying ? originPosition : (Vector2)transform.position + 
-                    Vector2.Scale(Path.Points[i].Location, InvertPath ? new Vector2(-1, 1) : Vector2.one));
+                    Vector2.Scale(points[i], InvertPath ? new Vector2(-1, 1) : Vector2.one));
             }
         }
         if (FireDirectionObject)

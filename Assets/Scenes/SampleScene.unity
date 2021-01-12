@@ -268,6 +268,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169829286}
   m_CullTransparentMesh: 0
+--- !u!1 &339169305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 339169307}
+  - component: {fileID: 339169306}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &339169306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339169305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca6f9f5aae79ea47839daa50401ef4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path:
+    points:
+    - {x: 0, y: 0}
+    - {x: -1.428067, y: -6.2262406}
+    - {x: -8.729765, y: -11.3817215}
+    - {x: -17.763447, y: -11.63577}
+  Name: Path1
+--- !u!4 &339169307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339169305}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5, y: 12, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &364558236
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +429,7 @@ MonoBehaviour:
     Rotation: 0
     SpecificsExpanded: 0
     SpeedConst: 0
-    Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
+    Path: {fileID: 0}
     FlipPath: 0
     SpeedRange: {x: 1.5, y: 3}
     OffScrBhv: 0
@@ -852,7 +902,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 13
-    Expanded: 0
+    Expanded: 1
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -860,10 +910,10 @@ MonoBehaviour:
     Delay: 2.8
     Position: {x: -5, y: 12}
     Rotation: 0
-    SpecificsExpanded: 0
+    SpecificsExpanded: 1
     SpeedConst: 3
     Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
-    FlipPath: 0
+    FlipPath: 1
     SpeedRange: {x: 0, y: 0}
     OffScrBhv: 0
     Bounces: 0
@@ -874,7 +924,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 15
-    Expanded: 0
+    Expanded: 1
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -882,10 +932,10 @@ MonoBehaviour:
     Delay: 2
     Position: {x: -5, y: 12}
     Rotation: 0
-    SpecificsExpanded: 0
+    SpecificsExpanded: 1
     SpeedConst: 3
     Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
-    FlipPath: 0
+    FlipPath: 1
     SpeedRange: {x: 0, y: 0}
     OffScrBhv: 0
     Bounces: 0
@@ -896,7 +946,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 17
-    Expanded: 0
+    Expanded: 1
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -904,10 +954,10 @@ MonoBehaviour:
     Delay: 2
     Position: {x: -5, y: 12}
     Rotation: 0
-    SpecificsExpanded: 0
+    SpecificsExpanded: 1
     SpeedConst: 3
     Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
-    FlipPath: 0
+    FlipPath: 1
     SpeedRange: {x: 0, y: 0}
     OffScrBhv: 0
     Bounces: 0
@@ -918,7 +968,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 19
-    Expanded: 0
+    Expanded: 1
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -926,10 +976,10 @@ MonoBehaviour:
     Delay: 2
     Position: {x: -5, y: 12}
     Rotation: 0
-    SpecificsExpanded: 0
+    SpecificsExpanded: 1
     SpeedConst: 3
     Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
-    FlipPath: 0
+    FlipPath: 1
     SpeedRange: {x: 0, y: 0}
     OffScrBhv: 0
     Bounces: 0
@@ -940,7 +990,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 24
-    Expanded: 0
+    Expanded: 1
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -948,10 +998,10 @@ MonoBehaviour:
     Delay: 5
     Position: {x: 5, y: 12}
     Rotation: 0
-    SpecificsExpanded: 0
+    SpecificsExpanded: 1
     SpeedConst: 3
     Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
-    FlipPath: 1
+    FlipPath: 0
     SpeedRange: {x: 0, y: 0}
     OffScrBhv: 0
     Bounces: 0
@@ -962,7 +1012,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 26
-    Expanded: 0
+    Expanded: 1
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -973,7 +1023,7 @@ MonoBehaviour:
     SpecificsExpanded: 1
     SpeedConst: 3
     Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
-    FlipPath: 1
+    FlipPath: 0
     SpeedRange: {x: 0, y: 0}
     OffScrBhv: 0
     Bounces: 0
@@ -984,7 +1034,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 28
-    Expanded: 0
+    Expanded: 1
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -992,10 +1042,10 @@ MonoBehaviour:
     Delay: 2
     Position: {x: 5, y: 12}
     Rotation: 0
-    SpecificsExpanded: 0
+    SpecificsExpanded: 1
     SpeedConst: 3
     Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
-    FlipPath: 1
+    FlipPath: 0
     SpeedRange: {x: 0, y: 0}
     OffScrBhv: 0
     Bounces: 0
@@ -1006,7 +1056,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 33
-    Expanded: 0
+    Expanded: 1
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -1017,7 +1067,7 @@ MonoBehaviour:
     SpecificsExpanded: 1
     SpeedConst: 3
     Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
-    FlipPath: 1
+    FlipPath: 0
     SpeedRange: {x: 0, y: 0}
     OffScrBhv: 0
     Bounces: 0
@@ -1028,35 +1078,13 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 33
-    Expanded: 0
+    Expanded: 1
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
       type: 3}
     Delay: 0
     Position: {x: -5, y: 12}
-    Rotation: 0
-    SpecificsExpanded: 1
-    SpeedConst: 3
-    Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
-    FlipPath: 0
-    SpeedRange: {x: 0, y: 0}
-    OffScrBhv: 0
-    Bounces: 0
-    RingElements: 0
-    RingDistance: 0
-    RingBullets: {fileID: 0}
-    hasErrors: 0
-    hasWarnings: 0
-  - PendingAction: 0
-    SpawnTime: 35
-    Expanded: 0
-    Type: 0
-    Previewing: 0
-    Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
-      type: 3}
-    Delay: 2
-    Position: {x: 5, y: 12}
     Rotation: 0
     SpecificsExpanded: 1
     SpeedConst: 3
@@ -1072,13 +1100,57 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 35
-    Expanded: 0
+    Expanded: 1
+    Type: 0
+    Previewing: 0
+    Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
+      type: 3}
+    Delay: 2
+    Position: {x: 5, y: 12}
+    Rotation: 0
+    SpecificsExpanded: 1
+    SpeedConst: 3
+    Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
+    FlipPath: 0
+    SpeedRange: {x: 0, y: 0}
+    OffScrBhv: 0
+    Bounces: 0
+    RingElements: 0
+    RingDistance: 0
+    RingBullets: {fileID: 0}
+    hasErrors: 0
+    hasWarnings: 0
+  - PendingAction: 0
+    SpawnTime: 35
+    Expanded: 1
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
       type: 3}
     Delay: 0
     Position: {x: -5, y: 12}
+    Rotation: 0
+    SpecificsExpanded: 1
+    SpeedConst: 3
+    Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
+    FlipPath: 1
+    SpeedRange: {x: 0, y: 0}
+    OffScrBhv: 0
+    Bounces: 0
+    RingElements: 0
+    RingDistance: 0
+    RingBullets: {fileID: 0}
+    hasErrors: 0
+    hasWarnings: 0
+  - PendingAction: 0
+    SpawnTime: 37
+    Expanded: 1
+    Type: 0
+    Previewing: 0
+    Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
+      type: 3}
+    Delay: 2
+    Position: {x: 5, y: 12}
     Rotation: 0
     SpecificsExpanded: 1
     SpeedConst: 3
@@ -1094,15 +1166,15 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 37
-    Expanded: 0
+    Expanded: 1
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
       type: 3}
-    Delay: 2
-    Position: {x: 5, y: 12}
+    Delay: 0
+    Position: {x: -5, y: 12}
     Rotation: 0
-    SpecificsExpanded: 0
+    SpecificsExpanded: 1
     SpeedConst: 3
     Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
     FlipPath: 1
@@ -1115,14 +1187,14 @@ MonoBehaviour:
     hasErrors: 0
     hasWarnings: 0
   - PendingAction: 0
-    SpawnTime: 37
-    Expanded: 0
+    SpawnTime: 39
+    Expanded: 1
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
       type: 3}
-    Delay: 0
-    Position: {x: -5, y: 12}
+    Delay: 2
+    Position: {x: 5, y: 12}
     Rotation: 0
     SpecificsExpanded: 1
     SpeedConst: 3
@@ -1138,29 +1210,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 39
-    Expanded: 0
-    Type: 0
-    Previewing: 0
-    Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
-      type: 3}
-    Delay: 2
-    Position: {x: 5, y: 12}
-    Rotation: 0
-    SpecificsExpanded: 0
-    SpeedConst: 3
-    Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
-    FlipPath: 1
-    SpeedRange: {x: 0, y: 0}
-    OffScrBhv: 0
-    Bounces: 0
-    RingElements: 0
-    RingDistance: 0
-    RingBullets: {fileID: 0}
-    hasErrors: 0
-    hasWarnings: 0
-  - PendingAction: 0
-    SpawnTime: 39
-    Expanded: 0
+    Expanded: 1
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -1168,10 +1218,10 @@ MonoBehaviour:
     Delay: 0
     Position: {x: -5, y: 12}
     Rotation: 0
-    SpecificsExpanded: 0
+    SpecificsExpanded: 1
     SpeedConst: 3
     Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
-    FlipPath: 0
+    FlipPath: 1
     SpeedRange: {x: 0, y: 0}
     OffScrBhv: 0
     Bounces: 0
@@ -1693,7 +1743,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1704,7 +1754,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.25, y: 20}
+  m_Size: {x: 19.25, y: 21}
   m_EdgeRadius: 0
 --- !u!114 &947040875
 MonoBehaviour:

@@ -181,7 +181,7 @@ MonoBehaviour:
   Projectile: {fileID: 8868261923147093872, guid: 647cb031577687d43a132bc0f7d932fb,
     type: 3}
   FireDirectionObject: {fileID: 8118259256796084245}
-  Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
+  Path: {fileID: 0}
   InvertPath: 1
   DespawnOffscreen: 1
   IsOffScreen: 0

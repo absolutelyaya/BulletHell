@@ -28,13 +28,14 @@ public class SpawningSystem : MonoBehaviour
         {
             if (item.Type.Equals(SpawnEntry.EntryType.Enemy) && item.Path != null && item.Previewing)
             {
-                for (int i = 1; i < item.Path.Points.Count; i++)
+                Vector2[] points = item.Path.Path.CalculateEvenlySpacedPoints(0.5f);
+                for (int i = 1; i < points.Length; i++)
                 {
                     Gizmos.color = Color.red;
                     Gizmos.DrawWireSphere(item.Position, 0.5f);
                     yayasGizmos.DrawArrow(
-                        item.Position + Vector2.Scale(item.Path.Points[i - 1].Location, item.FlipPath ? new Vector2(-1, 1) : Vector2.one),
-                        item.Position + Vector2.Scale(item.Path.Points[i].Location, item.FlipPath ? new Vector2(-1, 1) : Vector2.one),
+                        item.Position + Vector2.Scale(points[i - 1], item.FlipPath ? new Vector2(-1, 1) : Vector2.one),
+                        item.Position + Vector2.Scale(points[i], item.FlipPath ? new Vector2(-1, 1) : Vector2.one),
                         25f, 0.5f);
                 }
                 Previewing = true;
