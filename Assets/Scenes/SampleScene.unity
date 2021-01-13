@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 339169307}
   - component: {fileID: 339169306}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PathCreator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -312,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 339169305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 12, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -902,7 +902,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 13
-    Expanded: 1
+    Expanded: 0
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -924,7 +924,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 15
-    Expanded: 1
+    Expanded: 0
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -946,7 +946,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 17
-    Expanded: 1
+    Expanded: 0
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -968,7 +968,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 19
-    Expanded: 1
+    Expanded: 0
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -990,7 +990,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 24
-    Expanded: 1
+    Expanded: 0
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -1012,7 +1012,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 26
-    Expanded: 1
+    Expanded: 0
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -1034,7 +1034,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 28
-    Expanded: 1
+    Expanded: 0
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -1056,7 +1056,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 33
-    Expanded: 1
+    Expanded: 0
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -1078,7 +1078,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 33
-    Expanded: 1
+    Expanded: 0
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -1100,7 +1100,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 35
-    Expanded: 1
+    Expanded: 0
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -1122,7 +1122,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 35
-    Expanded: 1
+    Expanded: 0
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -1144,7 +1144,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 37
-    Expanded: 1
+    Expanded: 0
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -1166,7 +1166,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 37
-    Expanded: 1
+    Expanded: 0
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -1188,7 +1188,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 39
-    Expanded: 1
+    Expanded: 0
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -1210,7 +1210,7 @@ MonoBehaviour:
     hasWarnings: 0
   - PendingAction: 0
     SpawnTime: 39
-    Expanded: 1
+    Expanded: 0
     Type: 0
     Previewing: 0
     Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
@@ -1222,6 +1222,28 @@ MonoBehaviour:
     SpeedConst: 3
     Path: {fileID: 11400000, guid: f1348b2f25bd91a48a006bb6d0ad3998, type: 2}
     FlipPath: 1
+    SpeedRange: {x: 0, y: 0}
+    OffScrBhv: 0
+    Bounces: 0
+    RingElements: 0
+    RingDistance: 0
+    RingBullets: {fileID: 0}
+    hasErrors: 0
+    hasWarnings: 0
+  - PendingAction: 0
+    SpawnTime: 44
+    Expanded: 0
+    Type: 0
+    Previewing: 0
+    Entity: {fileID: 8567525700491728159, guid: 794f96a9796c92b488a5f07a6ee05aef,
+      type: 3}
+    Delay: 5
+    Position: {x: 0, y: 12}
+    Rotation: 0
+    SpecificsExpanded: 1
+    SpeedConst: 5
+    Path: {fileID: 11400000, guid: 6d7219faaf3f42142b578d3d01b78712, type: 2}
+    FlipPath: 0
     SpeedRange: {x: 0, y: 0}
     OffScrBhv: 0
     Bounces: 0

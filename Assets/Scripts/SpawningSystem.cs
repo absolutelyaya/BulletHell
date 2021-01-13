@@ -36,7 +36,7 @@ public class SpawningSystem : MonoBehaviour
                     yayasGizmos.DrawArrow(
                         item.Position + Vector2.Scale(points[i - 1], item.FlipPath ? new Vector2(-1, 1) : Vector2.one),
                         item.Position + Vector2.Scale(points[i], item.FlipPath ? new Vector2(-1, 1) : Vector2.one),
-                        25f, 0.5f);
+                        25f, 0.35f);
                 }
                 Previewing = true;
             }

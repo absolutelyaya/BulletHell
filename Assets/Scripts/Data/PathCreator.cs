@@ -30,5 +30,12 @@ namespace EnemyNavigation
             EditorUtility.FocusProjectWindow();
             Selection.activeObject = obj;
         }
+
+        public void LoadPath(string name)
+        {
+            Path = AssetDatabase.LoadAssetAtPath<PathScriptableObject>("Assets/ScriptableObjects/EnemyPaths/" + name + ".asset").Path;
+            Selection.activeObject = null;
+            Selection.activeObject = gameObject;
+        }
     }
 }

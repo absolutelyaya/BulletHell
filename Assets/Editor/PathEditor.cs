@@ -74,6 +74,17 @@ namespace EnemyNavigation
                 path.TranslatePath(creator.transform.position);
             if (Name.stringValue == string.Empty)
                 EditorGUILayout.HelpBox("You have to enter a name!", MessageType.Error);
+            if (AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/EnemyPaths/" + Name.stringValue + ".asset", typeof(PathScriptableObject)))
+            {
+                EditorGUILayout.HelpBox($"A file with the name '{Name.stringValue}' exists already!", MessageType.Warning);
+                if (GUILayout.Button("Load Path"))
+                {
+                    if (Name.stringValue != string.Empty)
+                    {
+                        creator.LoadPath(Name.stringValue);
+                    }
+                }
+            }
             if (GUILayout.Button("Save Path to ScriptableObject"))
             {
                 if (Name.stringValue != string.Empty)

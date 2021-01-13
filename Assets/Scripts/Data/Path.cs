@@ -8,7 +8,7 @@ namespace EnemyNavigation
     [Serializable]
     public class Path
     {
-        [SerializeField, HideInInspector]
+        [SerializeField]
         List<Vector2> points;
 
         public Path(Vector2 centre)
