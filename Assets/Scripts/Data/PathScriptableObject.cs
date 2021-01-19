@@ -9,7 +9,7 @@ namespace EnemyNavigation
     {
         public Path Path;
 
-        PathScriptableObject(Path path)
+        public PathScriptableObject(Path path)
         {
             Path = path;
         }
